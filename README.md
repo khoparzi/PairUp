@@ -23,3 +23,17 @@ Install Composer:
 Get dependencies:
 
 	php composer.phar install
+
+Set encryption keys inside the app:
+
+	php artisan key:generate
+
+In a development version only, to see errors verbosely:
+
+	cp .env.example .env
+
+On a spare console, fire up an instance of the app on http:localhost:8000
+
+	php artisan serve
+
+Or of course, create an Apache vhost.
