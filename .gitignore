@@ -4,3 +4,9 @@ composer.phar
 
 # Ignore IDEs
 nbproject/
+
+# Items added by Laravel installation
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
