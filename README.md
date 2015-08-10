@@ -13,8 +13,8 @@ Installation instructions
 
 Create a directory and get the repo:
 
-	mkdir PairUp && cd PairUp
-	git clone git@github.com:Lets-Build-Something/PairUp.git
+    mkdir PairUp && cd PairUp
+    git clone git@github.com:Lets-Build-Something/PairUp.git
 
 Install Composer:
 
@@ -22,15 +22,15 @@ Install Composer:
 
 Get dependencies:
 
-	php composer.phar install
+    php composer.phar install
 
 Set encryption keys inside the app:
 
-	php artisan key:generate
+    php artisan key:generate
 
 In a development version only, to see errors verbosely:
 
-	cp .env.example .env
+    cp .env.example .env
 
 Now grab a copy of Selenium server. I imagine the latest from here would be fine:
 
@@ -38,18 +38,18 @@ Now grab a copy of Selenium server. I imagine the latest from here would be fine
 
 Here's a quick link to one that worked for me (30M in size):
 
-	wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar
+    wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar
 
 On a spare console, fire it up using the following. You'll need Java installed on your system:
 
-	java -jar selenium-server-standalone-2.47.0.jar
+    java -jar selenium-server-standalone-2.47.0.jar
 
 On another spare console, fire up an instance of the app on http:localhost:8000
 
-	php artisan serve
+    php artisan serve
 
-Or of course, create an Apache vhost.
+Or of course, create an Apache vhost on localhost:8000 (the default Laravel URL).
 
 To run the tests, just run this shortcut:
 
-	./phpunit
+    ./phpunit
