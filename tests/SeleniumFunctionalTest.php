@@ -25,11 +25,18 @@ class SeleniumFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->webDriver = RemoteWebDriver::create('http://localhost:4444/wd/hub', $capabilities);
     }
 
+    public function tearDown()
+    {
+        $this->webDriver->close();
+    }
+
     public function testUsingSelenium()
     {
         $this->webDriver->get($this->baseUrl);
 
-        $body = WebDriverBy::tagName('body');
-        $this->assertContains('Laravel', $body);
+        $body = $this->webDriver->findElement(WebDriverBy::tagName('body'));
+        echo $body->getText() . "\n";
+
+        $this->assertContains('Laravel 5', $body->getText());
     }
 }
