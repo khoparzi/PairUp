@@ -37,3 +37,7 @@ On a spare console, fire up an instance of the app on http:localhost:8000
 	php artisan serve
 
 Or of course, create an Apache vhost.
+
+To run the tests, just run this shortcut:
+
+	./phpunit
