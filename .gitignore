@@ -1,0 +1,6 @@
+# Ignore dependencies
+vendor/
+composer.phar
+
+# Ignore IDEs
+nbproject/
