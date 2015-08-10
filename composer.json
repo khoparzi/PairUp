@@ -2,5 +2,8 @@
   "require-dev": {
     "facebook/webdriver": "~1.0",
 	"phpunit/phpunit": "*"
+  },
+  "require": {
+    "laravel/installer": "~1.1"
   }
 }
