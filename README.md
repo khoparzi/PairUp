@@ -14,6 +14,7 @@ Installation instructions
 Create a directory and get the repo:
 
     git clone git@github.com:Lets-Build-Something/PairUp.git
+    cd PairUp
 
 Install Composer:
 
@@ -43,7 +44,7 @@ On a spare console, fire it up using the following. You'll need Java installed o
 
     java -jar selenium-server-standalone-2.47.0.jar
 
-On another spare console, fire up an instance of the app on http:localhost:8000
+On another spare console, fire up an instance of the app (uses http:localhost:8000)
 
     php artisan serve
 
