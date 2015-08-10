@@ -2,6 +2,9 @@
 vendor/
 composer.phar
 
+# Ignore Selenium JAR file:
+selenium-server-standalone-*
+
 # Ignore IDEs
 nbproject/
 

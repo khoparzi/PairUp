@@ -32,7 +32,19 @@ In a development version only, to see errors verbosely:
 
 	cp .env.example .env
 
-On a spare console, fire up an instance of the app on http:localhost:8000
+Now grab a copy of Selenium server. I imagine the latest from here would be fine:
+
+    http://selenium-release.storage.googleapis.com/index.html
+
+Here's a quick link to one that worked for me (30M in size):
+
+	wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar
+
+On a spare console, fire it up using the following. You'll need Java installed on your system:
+
+	java -jar selenium-server-standalone-2.47.0.jar
+
+On another spare console, fire up an instance of the app on http:localhost:8000
 
 	php artisan serve
 
