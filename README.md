@@ -1,6 +1,13 @@
 PairUp app
 ==========
 
+Introduction
+------------
+
+This app is a shared repo for an as-yet unfinished web application to help programmers find other programmers willing to teach a technical skill, or to collaborate on interesting projects. Users can either skills-swap in pairs, or learn from one and pay it forward to another. It will be written in PHP using the Laravel framework.
+
+Programmers in the system will have a profile where they can rate their skill set in various areas, and which will aid other programmers searching for specific skill requirements.
+
 General notes
 -------------
 
