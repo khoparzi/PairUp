@@ -18,7 +18,7 @@ The repository has been called PairUp just as a working title, and this may chan
 Installation instructions
 -------------------------
 
-Create a directory and get the repo:
+Get the repo and switch to the new directory:
 
     git clone git@github.com:Lets-Build-Something/PairUp.git
     cd PairUp
