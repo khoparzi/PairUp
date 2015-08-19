@@ -31,14 +31,12 @@ Get dependencies:
 
     php composer.phar install
 
-Set encryption keys inside the app:
-
-    php artisan key:generate
-
-In a development version only, to see errors verbosely:
+In a development version only, set the environment variables by copying the sample code:
 
     cp .env.example .env
-
+    
+Then inside the new `.env`, update the `APP_KEY` value to a string that is at least 32 characters
+    
 Now grab a copy of Selenium server. I imagine the latest from here would be fine:
 
     http://selenium-release.storage.googleapis.com/index.html
