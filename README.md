@@ -60,3 +60,43 @@ Or of course, create an Apache vhost on localhost:8000 (the default Laravel URL)
 To run the tests, just run this shortcut:
 
     ./phpunit
+
+We'll need a database, so run these commands as the root MySQL user, choosing a strong password
+for non-development environments:
+
+    CREATE DATABASE pairup DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+    CREATE USER 'pairup'@'localhost' IDENTIFIED BY '(random password)';
+    GRANT ALL PRIVILEGES ON pairup.* TO 'pairup'@'localhost';
+    FLUSH PRIVILEGES;
+
+Next, let's add the database credentials to the `.env` file:
+
+    DB_HOST=localhost
+    DB_DATABASE=pairup
+    DB_USERNAME=pairup
+    DB_PASSWORD=(random password)
+
+You'll need to restart `artisan serve` to re-read these credentials. Alternatively if you're using Apache, you can use these in your vhost, and then do a graceful reload:
+
+    SetEnv DB_HOST (ipaddress)
+    SetEnv DB_DATABASE pairup
+    SetEnv DB_USERNAME pairup
+    SetEnv DB_PASSWORD (random password)
+
+Now let's set up the migrations and check they're ready to run:
+
+    php artisan migrate:install
+    php artisan migrate:status
+
+That should result in something similar to the following:
+
+    +------+------------------------------------------------+
+    | Ran? | Migration                                      |
+    +------+------------------------------------------------+
+    | N    | 2014_10_12_000000_create_users_table           |
+    | N    | 2014_10_12_100000_create_password_resets_table |
+    +------+------------------------------------------------+
+
+If it does, you should be able to run them:
+
+    php artisan migrate
