@@ -100,3 +100,5 @@ That should result in something similar to the following:
 If it does, you should be able to run them:
 
     php artisan migrate
+
+You should now be able to register a user account, and log in and out.
