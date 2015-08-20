@@ -9,8 +9,6 @@ class MasterSiteComposer
 {
     /**
      * Sets up the auth info for all views
-     * 
-     * @todo Why this this composer method called twice? Are there are several partials being rendered?
      */
     public function compose(View $view)
     {
