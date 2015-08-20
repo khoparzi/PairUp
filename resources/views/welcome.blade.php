@@ -45,8 +45,12 @@
     </head>
     <body>
 		<div class="menu">
-			<a href="auth/login">Login</a> |
-			<a href="auth/register">Register</a>
+            @if ($username)
+                <a href="/auth/logout">Logout {{ $username }}</a>
+            @else
+                <a href="/auth/login">Login</a> |
+                <a href="/auth/register">Register</a>
+            @endif
 		</div>
 		<div class="outer">
 			<div class="container">
