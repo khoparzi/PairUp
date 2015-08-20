@@ -17,11 +17,11 @@
                 font-family: 'Lato';
             }
 
-			.outer {
+            .outer {
                 width: 100%;
-				height: 100%;
+                height: 100%;
                 display: table;
-			}
+            }
 
             .container {
                 text-align: center;
@@ -29,9 +29,9 @@
                 vertical-align: middle;
             }
 
-			.menu {
-				padding: 4px;
-			}
+            .menu {
+                padding: 4px;
+            }
 
             .content {
                 text-align: center;
@@ -44,20 +44,20 @@
         </style>
     </head>
     <body>
-		<div class="menu">
+        <div class="menu">
             @if ($username)
                 <a href="/auth/logout">Logout {{ $username }}</a>
             @else
                 <a href="/auth/login">Login</a> |
                 <a href="/auth/register">Register</a>
             @endif
-		</div>
-		<div class="outer">
-			<div class="container">
-				<div class="content">
-					<div class="title">Laravel 5</div>
-				</div>
-			</div>
-		</div>
-    </body>
+        </div>
+        <div class="outer">
+            <div class="container">
+                <div class="content">
+                    <div class="title">Laravel 5</div>
+                </div>
+            </div>
+        </div>
+</body>
 </html>
