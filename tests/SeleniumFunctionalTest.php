@@ -35,7 +35,6 @@ class SeleniumFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->webDriver->get($this->baseUrl);
 
         $body = $this->webDriver->findElement(WebDriverBy::tagName('body'));
-        echo $body->getText() . "\n";
 
         $this->assertContains('Laravel 5', $body->getText());
     }
