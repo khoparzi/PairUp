@@ -11,7 +11,7 @@ Programmers in the system will have a profile where they can rate their skill se
 General notes
 -------------
 
-All dependencies have been kept local, so there are minimal assumptions about the machine upon which this application is installed.
+All PHP dependencies have been kept local, so there are minimal assumptions about the machine upon which this application is installed.
 
 The repository has been called PairUp just as a working title, and this may change.
 
@@ -47,7 +47,7 @@ Here's a quick link to one that worked for me (30M in size):
 
     wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar
 
-To run the Selenium tests, you'll need cURL installed. On Ubuntu, you can do this:
+To run the Selenium tests, you'll need cURL installed. On Ubuntu, you can do this, if you don't have it already:
 
     sudo apt-get install php5-curl
 
@@ -96,7 +96,7 @@ You should now be able to register a user account, and log in and out.
 Testing
 -------
 
-On a spare console, fire it up using the following. You'll need Java installed on your system:
+On a spare console, fire up Selenium using the following. You'll need Java installed on your system:
 
     java -jar selenium-server-standalone-2.47.0.jar
 
