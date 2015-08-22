@@ -16,5 +16,5 @@ before_script:
   - php artisan migrate:install
   - php artisan migrate:status
   - php artisan migrate
-  - java -jar selenium-server-standalone-2.47.0.jar
+  - java -jar selenium-server-standalone-2.47.0.jar &
   - php artisan serve
