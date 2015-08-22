@@ -47,19 +47,9 @@ Here's a quick link to one that worked for me (30M in size):
 
     wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar
 
-On a spare console, fire it up using the following. You'll need Java installed on your system:
+To run the Selenium tests, you'll need cURL installed. On Ubuntu, you can do this:
 
-    java -jar selenium-server-standalone-2.47.0.jar
-
-On another spare console, fire up an instance of the app (uses http:localhost:8000)
-
-    php artisan serve
-
-Or of course, create an Apache vhost on localhost:8000 (the default Laravel URL).
-
-To run the tests, just run this shortcut:
-
-    ./phpunit
+    sudo apt-get install php5-curl
 
 We'll need a database, so run these commands as the root MySQL user, choosing a strong password
 for non-development environments:
@@ -102,3 +92,20 @@ If it does, you should be able to run them:
     php artisan migrate
 
 You should now be able to register a user account, and log in and out.
+
+Testing
+-------
+
+On a spare console, fire it up using the following. You'll need Java installed on your system:
+
+    java -jar selenium-server-standalone-2.47.0.jar
+
+On another spare console, fire up an instance of the app (uses localhost:8000)
+
+    php artisan serve
+
+Or of course, create an Apache vhost on localhost:8000 (the default Laravel URL).
+
+To run the tests, just run this shortcut:
+
+    ./phpunit
