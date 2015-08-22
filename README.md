@@ -100,7 +100,7 @@ On a spare console, fire it up using the following. You'll need Java installed o
 
     java -jar selenium-server-standalone-2.47.0.jar
 
-On another spare console, fire up an instance of the app (uses http:localhost:8000)
+On another spare console, fire up an instance of the app (uses localhost:8000)
 
     php artisan serve
 
