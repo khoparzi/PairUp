@@ -18,3 +18,4 @@ before_script:
   - php artisan migrate
   - java -jar /tmp/selenium.jar &
   - php artisan serve &
+  - sleep 45
