@@ -1,5 +1,7 @@
 PairUp app
 ==========
+[![Build Status](https://travis-ci.org/Lets-Build-Something/PairUp.svg?branch=master)](https://travis-ci.org/Lets-Build-Something/PairUp)
+[![Build Status](https://scrutinizer-ci.com/g/Lets-Build-Something/PairUp/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Lets-Build-Something/PairUp/build-status/master)
 
 Introduction
 ------------
