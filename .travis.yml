@@ -10,11 +10,11 @@ before_script:
   - composer self-update
   - composer install
   - composer update
-  - wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar
+  - wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar /tmp/selenium.jar
   - cp .env.example .env
   - php artisan key:generate
   - php artisan migrate:install
   - php artisan migrate:status
   - php artisan migrate
-  - java -jar selenium-server-standalone-2.47.0.jar &
+  - java -jar /tmp/selenium.jar &
   - php artisan serve &
