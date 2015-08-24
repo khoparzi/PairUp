@@ -7,6 +7,8 @@ before_install:
   - mysql -e "CREATE DATABASE pairup DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;CREATE USER 'pairup'@'localhost' IDENTIFIED BY 'secret';GRANT ALL PRIVILEGES ON pairup.* TO 'pairup'@'localhost';FLUSH PRIVILEGES;" -uroot
 
 before_script:
+  - mkdir -p ~/.composer
+  - cp .travis.composer.config.json ~/.composer/config.json
   - composer self-update
   - composer install
   - composer update
