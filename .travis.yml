@@ -10,12 +10,15 @@ before_script:
   - composer self-update
   - composer install
   - composer update
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=:99.0
   - wget http://selenium-release.storage.googleapis.com/2.47/selenium-server-standalone-2.47.0.jar -O /tmp/selenium.jar
+  - java -jar /tmp/selenium.jar > /dev/null &
+  - sleep 15
   - cp .env.example .env
   - php artisan key:generate
   - php artisan migrate:install
   - php artisan migrate:status
   - php artisan migrate
-  - java -jar /tmp/selenium.jar &
   - php artisan serve &
-  - sleep 45
+  - sleep 15
