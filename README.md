@@ -91,7 +91,7 @@ That should result in something similar to the following:
 
 If it does, you should be able to run them:
 
-    php artisan migrate
+    php artisan migrate --seed
 
 You should now be able to register a user account, and log in and out.
 
