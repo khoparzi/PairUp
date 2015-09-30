@@ -8,7 +8,6 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "facebook/webdriver": "~1.0",
-        "codeception/codeception": "*",
         "webpatser/laravel-countries": "dev-master"
     },
     "require-dev": {
