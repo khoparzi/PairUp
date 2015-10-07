@@ -19,7 +19,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 		// Check we get a redirect and error here
 		$this->
 			loginTestUser()->
-			visit('/forgot-password')->
+			visitForgotPasswordPage()->
 			seePageIs('/')->
 			see("If you have forgotten your password, please sign out first");
 	}
@@ -29,15 +29,24 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	public function testRememberedPasswordAfterAllLinkExists()
 	{
-		
+		$this->
+			visitForgotPasswordPage()->
+			click("Aha, I've remembered my password")->
+			seePageIs('/login');
 	}
 
 	/**
 	 * Checks that the submission of an empty email address results in an error
+	 * 
+	 * @todo Check that the error appears in an error class/style
 	 */
 	public function testSubmitEmptyEmail()
 	{
-		
+		$this->
+			visitForgotPasswordPage()->
+			type('', 'email')->
+			pressSubmit()->
+			see("The email field cannot be empty");
 	}
 
 	/**
@@ -60,5 +69,25 @@ class ForgotPasswordFunctionalTest extends TestCase
 	public function testValidEmail()
 	{
 		
+	}
+
+	/**
+	 * Visits the password reset page in a nice self-contained method
+	 * 
+	 * @return ForgotPasswordFunctionalTest
+	 */
+	protected function visitForgotPasswordPage()
+	{
+		return $this->visit('/forgot-password');
+	}
+
+	/**
+	 * Submits the password reset form
+	 * 
+	 * @return ForgotPasswordFunctionalTest
+	 */
+	protected function pressSubmit()
+	{
+		return $this->press("Send password reset link");
 	}
 }
