@@ -11,16 +11,23 @@ class ForgotPasswordFunctionalTest extends TestCase
 {
 	/**
 	 * Checks that viewing the forgot password screen is not possible if logged in
+	 * 
+	 * @todo Check the error is contained within an error class
 	 */
-	public function checkRedirectAndErrorIfLoggedIn()
+	public function testRedirectAndErrorIfLoggedIn()
 	{
-		
+		// Check we get a redirect and error here
+		$this->
+			loginTestUser()->
+			visit('/forgot-password')->
+			seePageIs('/')->
+			see("If you have forgotten your password, please sign out first");
 	}
 
 	/**
 	 * Checks that the user is given an easy, explicit route back to the login page
 	 */
-	public function checkRememberedPasswordAfterAllLinkExists()
+	public function testRememberedPasswordAfterAllLinkExists()
 	{
 		
 	}
