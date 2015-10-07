@@ -10,9 +10,17 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class ForgotPasswordFunctionalTest extends TestCase
 {
 	/**
+	 * Checks that viewing the forgot password screen is not possible if logged in
+	 */
+	public function checkRedirectAndErrorIfLoggedIn()
+	{
+		
+	}
+
+	/**
 	 * Checks that the user is given an easy, explicit route back to the login page
 	 */
-	public function checkRememberedPasswordAfterAll()
+	public function checkRememberedPasswordAfterAllLinkExists()
 	{
 		
 	}
