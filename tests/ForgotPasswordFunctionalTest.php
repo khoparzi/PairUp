@@ -43,9 +43,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 	public function testSubmitEmptyEmail()
 	{
 		$this->
-			visitForgotPasswordPage()->
-			type('', 'email')->
-			pressSubmit()->
+			submitEmail('')->
 			see("The email field cannot be empty");
 	}
 
@@ -56,19 +54,63 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	public function testInvalidEmail()
 	{
-		
+		// No alias part
+		$this->submitInvalidEmail('@example.com');
+
+		// No domain
+		$this->submitInvalidEmail('test@');
+
+		// No valid TLD
+		$this->submitInvalidEmail('test@example');
+
+		// Too many at symbols
+		$this->submitInvalidEmail('test@@example.com');
+
+		// No at symbol
+		$this->submitInvalidEmail('test+example.com');
 	}
 
 	/**
 	 * Test that the submission of a valid email results in a success message
 	 * 
 	 * Note there is no distinction between addresses that exist and those that do not.
+	 * In test mode, no actual email should be sent.
 	 * 
-	 * In test mode, no actual email should be sent, though we cannot test for this.
+	 * @todo Check that the success message is in a success CSS class
+	 * @todo Is there a Laravel feature to check that an email has been sent?
 	 */
 	public function testValidEmail()
 	{
-		
+		$this->
+			submitEmail('test@example.com')->
+			see("Your password reminder request has been received, and an email will be sent to the specified address");
+	}
+
+	/**
+	 * Submits the specified email address in the forgotten password page
+	 * 
+	 * @param string $email
+	 * @return ForgotPasswordFunctionalTest
+	 */
+	protected function submitEmail($email)
+	{
+		return $this->visitForgotPasswordPage()->
+			type($email, 'email')->
+			pressSubmit();
+	}
+
+	/**
+	 * Submits the specified email address and checks for an invalid error
+	 * 
+	 * @todo Check the error appears in an error class
+	 * 
+	 * @param string $email
+	 * @return ForgotPasswordFunctionalTest
+	 */
+	protected function submitInvalidEmail($email)
+	{
+		return $this->submitEmail('@example.com')->
+			see("That email address is  not valid");
 	}
 
 	/**
