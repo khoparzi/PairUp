@@ -4,6 +4,7 @@
     @if ($errors->count())
         <p>
             {{ $errors->first('email') }}
+            {{ $errors->first('password') }}
         </p>
     @endif
 
@@ -22,6 +23,6 @@
     </div>
 
     <div>
-        <button type="submit">Login</button>
+        <button type="submit" id="submit">Login</button>
     </div>
 </form>
