@@ -10,11 +10,14 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class HomeTest extends TestCase
 {
     /**
-     * Checks that the homepage is accesible
+     * Checks that the homepage is accessible
      */
-    public function testHomesPageAccesible()
+    public function testHomesPageAccessible()
     {
-        //@TODO: Implementation pending
+        $this
+            ->visit(route('public.welcome'))
+            ->seePageIs(route('public.welcome'))
+            ->see(trans("public.words.welcome"));
     }
 
     /**
@@ -22,7 +25,12 @@ class HomeTest extends TestCase
      */
     public function testUsersLinkExistAndIsValid()
     {
-        //@TODO: Implementation pending
+        $this
+            ->visit(route('public.welcome'))
+            ->seePageIs(route('public.welcome'))
+            ->see(trans("public.links.login"))
+            ->press(trans("public.links.login"))
+            ->seePageIs(route('public.user.list'));
     }
 
     /**
@@ -30,7 +38,12 @@ class HomeTest extends TestCase
      */
     public function testRegisterLinkExistAndIsValid()
     {
-        //@TODO: Implementation pending
+        $this
+            ->visit(route('public.welcome'))
+            ->seePageIs(route('public.welcome'))
+            ->see(trans("public.links.register"))
+            ->press(trans("public.links.register"))
+            ->seePageIs(route('public.user.register'));
     }
 
     /**
@@ -38,15 +51,25 @@ class HomeTest extends TestCase
      */
     public function testSignInLinkExistAndIsValid()
     {
-        //@TODO: Implementation pending
+        $this
+            ->visit(route('public.welcome'))
+            ->seePageIs(route('public.welcome'))
+            ->see(trans("public.links.login"))
+            ->press(trans("public.links.login"))
+            ->seePageIs(route('public.user.login'));
     }
 
     /**
-     * Checks that textbox to input the username (for availability check) does exist
+     * Checks that textbox to input the username (for availability check) does exist and also the trigger button
      */
     public function testUsernameTextBoxExist()
     {
-        //@TODO: Implementation pending
+        $this
+            ->visit(route('public.welcome'))
+            ->seePageIs(route('public.welcome'))
+            ->see(trans("public.words.usernameStartingInputBox"))
+            ->see("usernameInputBox")
+            ->see("usernameSearchButton");
     }
 
     /**
@@ -54,7 +77,11 @@ class HomeTest extends TestCase
      */
     public function testUsernameSearchTriggersToNewPage()
     {
-        //@TODO: Implementation pending
+        $this
+            ->visit(route('public.welcome'))
+            ->seePageIs(route('public.welcome'))
+            ->type("usernameInTheDatabase", "usernameInputBox")
+            ->press("searchUsernameButton");
     }
 
 }

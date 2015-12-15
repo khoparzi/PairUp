@@ -48,14 +48,14 @@
             @if ($username)
                 <a href="/auth/logout">Logout {{ $username }}</a>
             @else
-                <a href="/auth/login">Login</a> |
-                <a href="/auth/register">Register</a>
+                <a href="/auth/login">{{ trans("public.links.login") }}</a> |
+                <a href="/auth/register">{{ trans("public.links.register") }}</a>
             @endif
         </div>
         <div class="outer">
             <div class="container">
                 <div class="content">
-                    <div class="title">Laravel 5</div>
+                    <div class="title"> {{ trans("public.words.welcome") }}</div>
                 </div>
             </div>
         </div>
