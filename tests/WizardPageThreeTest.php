@@ -6,11 +6,41 @@
 class WizardPageThreeTest extends TestCase
 {
     /**
+     * Check that the Previous button works as expected
+     */
+    public function testClickingPreviousGoesToPageTwo()
+    {
+        $this->
+            loginTestUser()->
+            visitWizardPageThree()->
+            click('Previous')->
+            seePageIs('/edit/profile/2');
+    }
+
+    /**
+     * When successfully saving, check we send the user to the profile screen
+     *
+     * This wasn't in the wireframe/spec, so Umbert and myself just agreed on where to send them.
+     */
+    public function clickingFinishGoesToProfileBrowser()
+    {
+        $this->
+            loginTestUser()->
+            visitWizardPageThree()->
+            click('Finish')->
+            seePageIs('/edit/profile/2');
+    }
+
+    /**
      * Users may wish not to add a profile, or to add one later
      */
     public function testEmptyProfileUrlIsAllowed()
     {
-        
+        $this->
+            loginTestUser()->
+            visitWizardPageThree()->
+            click('Finish');
+        // @todo Finish this
     }
 
     /**
@@ -51,5 +81,30 @@ class WizardPageThreeTest extends TestCase
     public function testJavaScriptIsMadeSafe()
     {
         
+    }
+
+    /**
+     * Checks the final wizard page saved OK
+     *
+     * The save message was not on the wireframe, so the below is a suggestion - feel free to
+     * amend this if necessary.
+     *
+     * @return \WizardPageThreeTest
+     */
+    protected function checkSuccessfulSaveMessage()
+    {
+        return $this->see(
+            "Profile saved successfully. Now go ahead and browse profiles of available users!"
+        );
+    }
+
+    /**
+     * Directs the internal browser component to visit page 3 of the profile wizard
+     *
+     * @return \WizardPageThreeTest
+     */
+    protected function visitWizardPageThree()
+    {
+        return $this->visit('/edit/profile/3');
     }
 }
