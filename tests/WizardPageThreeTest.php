@@ -11,7 +11,6 @@ class WizardPageThreeTest extends TestCase
     public function testClickingPreviousGoesToPageTwo()
     {
         $this->
-            loginTestUser()->
             visitWizardPageThree()->
             click('Previous')->
             seePageIs('/edit/profile/2');
@@ -25,7 +24,6 @@ class WizardPageThreeTest extends TestCase
     public function clickingFinishGoesToProfileBrowser()
     {
         $this->
-            loginTestUser()->
             visitWizardPageThree()->
             click('Finish')->
             seePageIs('/edit/profile/2');
@@ -37,7 +35,6 @@ class WizardPageThreeTest extends TestCase
     public function testEmptyProfileUrlIsAllowed()
     {
         $this->
-            loginTestUser()->
             visitWizardPageThree()->
             click('Finish');
         // @todo Finish this
@@ -105,6 +102,8 @@ class WizardPageThreeTest extends TestCase
      */
     protected function visitWizardPageThree()
     {
-        return $this->visit('/edit/profile/3');
+        return $this->
+            loginTestUser()->
+            visit('/edit/profile/3');
     }
 }
