@@ -40,7 +40,7 @@ class WizardPageThreeTest extends TestCase
         // Check that the save was successful
         $this
             ->visit('/profile/testuser')
-            ->see("testuser's profile")
+            ->see(trans('profile.title', ['username' => 'testuser']))
             ->see("Description"); // FIXME
     }
 
