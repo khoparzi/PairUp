@@ -12,7 +12,7 @@ class WizardPageTwoTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/2')
-            ->see(trans("wizard.general.new_skill"));
+            ->see(trans("public.wizard.new_skill"));
     }
 
     public function testPreviousButtonExist()
@@ -22,7 +22,7 @@ class WizardPageTwoTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/2')
-            ->see(trans("pagination.previous"));
+            ->see(trans("public.wizard.previous"));
     }
 
     public function testNextButtonExist()
@@ -32,7 +32,7 @@ class WizardPageTwoTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/2')
-            ->see(trans("pagination.next"));
+            ->see(trans("public.wizard.next"));
     }
 
     public function testPreviousButtonRedirect()
@@ -42,7 +42,7 @@ class WizardPageTwoTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/2')
-            ->press(trans("pagination.previous"))
+            ->press(trans("public.wizard.previous"))
             ->seePageIs(route('wizard.FirstPage'));
     }
 
@@ -53,7 +53,7 @@ class WizardPageTwoTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/2')
-            ->press(trans("pagination.next"))
+            ->press(trans("public.wizard.next"))
             ->seePageIs(route('wizard.ThirdPage'));
     }
 
@@ -64,7 +64,7 @@ class WizardPageTwoTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/2')
-            ->press(trans("wizard.general.new_skill"))
+            ->press(trans("public.wizard.new_skill"))
             ->seePageIs(route('wizard.AddSkill'));
     }
 }

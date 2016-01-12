@@ -12,7 +12,7 @@ class WizardPageOneTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/1')
-            ->see(trans("pagination.next"));
+            ->see(trans("public.wizard.next"));
     }
 
     public function testNextButtonRedirect()
@@ -22,7 +22,7 @@ class WizardPageOneTest extends TestCase
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->visit('/edit/profile/1')
-            ->press(trans("pagination.next"))
+            ->press(trans("public.wizard.next"))
             ->seePageIs(route('wizard.SecondPage'));
     }
 

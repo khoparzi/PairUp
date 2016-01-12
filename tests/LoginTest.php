@@ -38,9 +38,12 @@ class LoginTest extends TestCase
      */
     public function testInvalidEmail()
     {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this
+            ->visit('/login')
+            ->type('INVALID@test@Email.c', 'email')
+            ->type('valid_password', 'password')
+            ->pressSubmit()
+            ->see(trans("validation.email"));
     }
 
     /**
@@ -48,9 +51,12 @@ class LoginTest extends TestCase
      */
     public function testValidLogin()
     {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->type('valid_password', 'password')
+            ->pressSubmit()
+            ->assertResponseStatus(200);
     }
 
     /**
@@ -58,9 +64,12 @@ class LoginTest extends TestCase
      */
     public function testInvalidLogin()
     {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this
+            ->visit('/login')
+            ->type('INVALID@testEmail.com', 'email')
+            ->type('INVALID_password', 'password')
+            ->pressSubmit()
+            ->assertResponseStatus(401);
     }
 
     /**
@@ -68,9 +77,10 @@ class LoginTest extends TestCase
      */
     public function testForgotPaswordLinkDrivesToThePage()
     {
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this
+            ->visit('/login')
+            ->press(trans("public.links.forgotPassword"))
+            ->seePageIs(route("forgotPassword"));
     }
 
     /**
