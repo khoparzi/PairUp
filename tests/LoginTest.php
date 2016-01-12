@@ -38,7 +38,9 @@ class LoginTest extends TestCase
      */
     public function testInvalidEmail()
     {
-        //@TODO: Implementation pending
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -46,7 +48,9 @@ class LoginTest extends TestCase
      */
     public function testValidLogin()
     {
-        //@TODO: Implementation pending
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -54,7 +58,9 @@ class LoginTest extends TestCase
      */
     public function testInvalidLogin()
     {
-        //@TODO: Implementation pending
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -62,7 +68,9 @@ class LoginTest extends TestCase
      */
     public function testForgotPaswordLinkDrivesToThePage()
     {
-        //@TODO: Implementation pending
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -70,7 +78,9 @@ class LoginTest extends TestCase
      */
     public function testValidUsernameAndPasswordThrowsPasswordFailure()
     {
-        //@TODO: Implementation pending
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
