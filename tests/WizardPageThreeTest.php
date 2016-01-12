@@ -16,10 +16,10 @@ class WizardPageThreeTest extends TestCase
      */
     public function testClickingPreviousGoesToPageTwo()
     {
-        $this->
-            visitWizardPageThree()->
-            click(trans('public.wizard.previous'))->
-            seePageIs('/edit/profile/2');
+        $this
+            ->visitWizardPageThree()
+            ->click(trans('public.wizard.previous'))
+            ->seePageIs('/edit/profile/2');
     }
 
     /**
@@ -30,19 +30,19 @@ class WizardPageThreeTest extends TestCase
     public function clickingFinishSavesAndGoesToProfileBrowser()
     {
         // Check we go to the right place and get a save message
-        $this->
-            visitWizardPageThree()->
-            type('value', 'field')->
-            type('value', 'field')->
-            click(trans('public.wizard.finish'))->
-            seePageIs('/edit/profile/2')->
-            checkSuccessfulSaveMessage();
+        $this
+            ->visitWizardPageThree()
+            ->type('value', 'field')
+            ->type('value', 'field')
+            ->click(trans('public.wizard.finish'))
+            ->seePageIs('/edit/profile/2')
+            ->checkSuccessfulSaveMessage();
 
         // Check that the save was successful
-        $this->
-            visit('/profile/testuser')->
-            see("testuser's profile")->
-            see("Description"); // FIXME
+        $this
+            ->visit('/profile/testuser')
+            ->see("testuser's profile")
+            ->see("Description"); // FIXME
     }
 
     /**
@@ -50,9 +50,9 @@ class WizardPageThreeTest extends TestCase
      */
     public function testEmptyProfileUrlIsAllowed()
     {
-        $this->
-            visitWizardPageThree()->
-            click(trans('public.wizard.finish'));
+        $this
+            ->visitWizardPageThree()
+            ->click(trans('public.wizard.finish'));
 
         // @todo Finish this
         $this->markTestIncomplete(
@@ -137,8 +137,8 @@ class WizardPageThreeTest extends TestCase
      */
     protected function visitWizardPageThree()
     {
-        return $this->
-            loginTestUser()->
-            visit('/edit/profile/3');
+        return $this
+            ->loginTestUser()
+            ->visit('/edit/profile/3');
     }
 }

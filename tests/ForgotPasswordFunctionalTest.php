@@ -13,11 +13,11 @@ class ForgotPasswordFunctionalTest extends TestCase
 	public function testRedirectAndErrorIfLoggedIn()
 	{
 		// Check we get a redirect and error here
-		$this->
-			loginTestUser()->
-			visitForgotPasswordPage()->
-			seePageIs('/')->
-			see("If you have forgotten your password, please sign out first");
+		$this
+			->loginTestUser()
+			->visitForgotPasswordPage()
+			->seePageIs('/')
+			->see("If you have forgotten your password, please sign out first");
 	}
 
 	/**
@@ -25,10 +25,10 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	public function testRememberedPasswordAfterAllLinkExists()
 	{
-		$this->
-			visitForgotPasswordPage()->
-			click("Aha, I've remembered my password")->
-			seePageIs('/login');
+		$this
+			->visitForgotPasswordPage()
+			->click("Aha, I've remembered my password")
+			->seePageIs('/login');
 	}
 
 	/**
@@ -38,9 +38,9 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	public function testSubmitEmptyEmail()
 	{
-		$this->
-			submitEmail('')->
-			see("The email field cannot be empty");
+		$this
+			->submitEmail('')
+			->see("The email field cannot be empty");
 	}
 
 	/**
@@ -77,9 +77,9 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	public function testValidEmail()
 	{
-		$this->
-			submitEmail('test@example.com')->
-			see("Your password reminder request has been received, and an email will be sent to the specified address");
+		$this
+			->submitEmail('test@example.com')
+			->see("Your password reminder request has been received, and an email will be sent to the specified address");
 	}
 
 	/**
@@ -90,9 +90,9 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	protected function submitEmail($email)
 	{
-		return $this->visitForgotPasswordPage()->
-			type($email, 'email')->
-			pressSubmit();
+		return $this->visitForgotPasswordPage()
+			->type($email, 'email')
+			->pressSubmit();
 	}
 
 	/**
@@ -105,8 +105,8 @@ class ForgotPasswordFunctionalTest extends TestCase
 	 */
 	protected function submitInvalidEmail($email)
 	{
-		return $this->submitEmail('@example.com')->
-			see("That email address is  not valid");
+		return $this->submitEmail('@example.com')
+			->see("That email address is  not valid");
 	}
 
 	/**
