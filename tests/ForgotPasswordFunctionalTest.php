@@ -1,13 +1,13 @@
 <?php
 
-/* 
+/*
  * Functional tests for the forgot password screen
  */
 class ForgotPasswordFunctionalTest extends TestCase
 {
     /**
      * Checks that viewing the forgot password screen is not possible if logged in
-     * 
+     *
      * @todo Check the error is contained within an error class
      */
     public function testRedirectAndErrorIfLoggedIn()
@@ -33,7 +33,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Checks that the submission of an empty email address results in an error
-     * 
+     *
      * @todo Check that the error appears in an error class/style
      */
     public function testSubmitEmptyEmail()
@@ -45,7 +45,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Test that the submission of an invalid email results in an error
-     * 
+     *
      * Valid means "contains exactly one @ symbol, and at least one dot in the domain part"
      */
     public function testInvalidEmail()
@@ -68,12 +68,12 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Test that the submission of a valid email results in a success message
-     * 
+     *
      * Note there is no distinction between addresses that exist and those that do not.
      * In test mode, no actual email should be sent.
-     * 
+     *
      * @todo Check that the success message is in a success CSS class
-     * @todo Is there a Laravel feature to check that an email has been sent?
+     * @todo Is there a Laravel feature to check that an email has been sent? Yes, http://mailcatcher.me/
      */
     public function testValidEmail()
     {
@@ -84,7 +84,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Submits the specified email address in the forgotten password page
-     * 
+     *
      * @param string $email
      * @return ForgotPasswordFunctionalTest
      */
@@ -97,9 +97,9 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Submits the specified email address and checks for an invalid error
-     * 
+     *
      * @todo Check the error appears in an error class
-     * 
+     *
      * @param string $email
      * @return ForgotPasswordFunctionalTest
      */
@@ -112,7 +112,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Visits the password reset page in a nice self-contained method
-     * 
+     *
      * @return ForgotPasswordFunctionalTest
      */
     protected function visitForgotPasswordPage()
@@ -122,7 +122,7 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Submits the password reset form
-     * 
+     *
      * @return ForgotPasswordFunctionalTest
      */
     protected function pressSubmit()
