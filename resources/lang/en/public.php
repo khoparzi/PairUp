@@ -20,6 +20,7 @@ return [
     ],
     "buttons" => [
         "login" => "Login",
+        "sendPassword" => "Send password reset link",
     ],
     "wizard" => [
         "previous" => "Previous",

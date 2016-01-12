@@ -127,6 +127,6 @@ class ForgotPasswordFunctionalTest extends TestCase
      */
     protected function pressSubmit()
     {
-        return $this->press("Send password reset link");
+        return $this->press(trans('public.buttons.sendPassword'));
     }
 }
