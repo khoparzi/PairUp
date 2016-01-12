@@ -10,7 +10,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testSingleUserCard()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -18,7 +21,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testBrowserNoUsers()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -26,7 +32,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testBrowserNoPagination()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -34,7 +43,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testBrowserContiguousPagination()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -42,7 +54,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testBrowserGapsInPagination()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -50,7 +65,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testPageNumbers()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -60,7 +78,10 @@ class ProfileBrowserTest extends TestCase
      */
     public function testLeftArrow()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -70,6 +91,9 @@ class ProfileBrowserTest extends TestCase
      */
     public function testRightArrow()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 }
