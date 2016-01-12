@@ -8,5 +8,10 @@ return [
         "login" => "Login",
         "register" => "Register",
         "users" => "Users",
+    ],
+    "wizard" => [
+        "previous" => "Previous",
+        "next" => "Next",
+        "finish" => "Finish",
     ]
 ];
