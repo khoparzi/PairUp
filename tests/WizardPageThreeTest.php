@@ -53,7 +53,11 @@ class WizardPageThreeTest extends TestCase
         $this->
             visitWizardPageThree()->
             click('Finish');
+
         // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -61,7 +65,10 @@ class WizardPageThreeTest extends TestCase
      */
     public function testNonWebUrlIsDisallowed()
     {
-        
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -69,7 +76,10 @@ class WizardPageThreeTest extends TestCase
      */
     public function testExcessivelyLongUrlIsDisallowed()
     {
-        
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -77,7 +87,10 @@ class WizardPageThreeTest extends TestCase
      */
     public function testEmptyDescriptionIsAllowed()
     {
-        
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -85,7 +98,10 @@ class WizardPageThreeTest extends TestCase
      */
     public function testExcessivelyLongDescriptionIsDisallowed()
     {
-        
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -93,7 +109,10 @@ class WizardPageThreeTest extends TestCase
      */
     public function testJavaScriptIsMadeSafe()
     {
-        
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
