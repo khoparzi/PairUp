@@ -36,9 +36,9 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
             visit('/login')->
             type('testuser', 'username')->
             type('testpass', 'password')->
-            press('Login')->
+            press(trans('public.buttons.login'))->
             seePageIs('/')->
-            see("You are now signed in");
+            see(trans('public.words.signedIn'));
 
         return $this;
     }
