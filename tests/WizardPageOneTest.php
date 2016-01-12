@@ -5,8 +5,74 @@
  */
 class WizardPageOneTest extends TestCase
 {
-    public function testDummy()
+    public function testNextButtonExist()
     {
-        // @todo This test can be deleted - just here to prevent warnings from PhpUnit
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->see(trans("pagination.next"));
+    }
+
+    public function testNextButtonRedirect()
+    {
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->press(trans("pagination.next"))
+            ->seePageIs(route('wizard.SecondPage'));
+    }
+
+    public function testFormExist()
+    {
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->see("personalDataForm");
+    }
+
+    public function testFirstNameFieldExist()
+    {
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->see(trans("forms.first_name"));
+    }
+
+    public function testLastNameFieldExist()
+    {
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->see(trans("forms.last_name"));
+    }
+
+    public function testTownFieldExist()
+    {
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->see(trans("forms.town"));
+    }
+
+    public function testCountryFieldExist()
+    {
+        $this
+            ->visit('/login')
+            ->type('valid@testEmail.com', 'email')
+            ->pressSubmit()
+            ->visit('/edit/profile/1')
+            ->see(trans("forms.country"));
     }
 }
