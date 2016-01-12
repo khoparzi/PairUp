@@ -23,23 +23,23 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $app;
     }
 
-	/**
-	 * A method to login as a test user in a Laravel (non-Selenium) functional test
-	 * 
-	 * @todo Subject to field names to be decided
-	 * @todo Check the informational message is within a success class
-	 */
-	protected function loginTestUser()
-	{
-		// Do a login here
-		$this->
-			visit('/login')->
-			type('testuser', 'username')->
-			type('testpass', 'password')->
-			press('Login')->
-			seePageIs('/')->
-			see("You are now signed in");
+    /**
+     * A method to login as a test user in a Laravel (non-Selenium) functional test
+     * 
+     * @todo Subject to field names to be decided
+     * @todo Check the informational message is within a success class
+     */
+    protected function loginTestUser()
+    {
+        // Do a login here
+        $this->
+            visit('/login')->
+            type('testuser', 'username')->
+            type('testpass', 'password')->
+            press('Login')->
+            seePageIs('/')->
+            see("You are now signed in");
 
-		return $this;
-	}
+        return $this;
+    }
 }
