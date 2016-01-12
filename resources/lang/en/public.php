@@ -34,5 +34,15 @@ return [
         ],
         "new_skill" => "Add a skill",
         "no_skills" => "No skills added",
+    ],
+    "message" => [
+        "success" => [
+            "registration" => "Registration successful"
+        ],
+        "failed" => [
+        ],
+        "informative" => [
+
+        ],
     ]
 ];

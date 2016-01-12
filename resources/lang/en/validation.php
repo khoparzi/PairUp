@@ -90,6 +90,7 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        "nicknameTaken" => "The username is already taken"
     ],
 
     /*

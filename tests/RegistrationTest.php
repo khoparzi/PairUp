@@ -10,28 +10,94 @@ class RegistrationTest extends TestCase
      */
     public function testAllFieldsMissing()
     {
-        // TODO
+        $this
+            ->press('Register')
+            ->see(trans("validation.required"));
     }
 
+    /**
+     * Checks that both inputted passwords match
+     */
     public function testPasswordMismatch()
     {
-        // TODO Set up test user using migration/seeder?
-
-        $this->
-            visit('/register')->
-            type('testuser', 'username')->
-            type('test@example.com', 'email')->
-            type('testpass', 'password1')->
-            type('testpass-different', 'password2')->
-            press('Register')->
-            seePageIs('/register')->
-            see('Passwords do not match, please try again');
+        $this
+            ->visit('/register')
+            ->type('testuser', 'username')
+            ->type('test@example.com', 'email')
+            ->type('testpass', 'password1')
+            ->type('testpass-different', 'password2')
+            ->press('Register')
+            ->seePageIs(route("register"))
+            ->see(trans("validation.confirmed"));
     }
 
+    /**
+     * Checks that we cannot register a unique username twice
+     */
     public function testUsernameAlreadyTaken()
     {
-        // TODO
+        $this
+            ->visit(route("register"))
+            ->type('repeatedUsername', 'username')
+            ->type('test@example.com', 'email')
+            ->type('testpass', 'password1')
+            ->type('testpass', 'password2')
+            ->press('Register')
+            ->seePageIs(route("register"))
+            ->see(trans("validation.custom.nicknameTaken"));
     }
 
-    // TODO more tests go here
+    /**
+     * Checks that we can register successfully
+     */
+    public function testSuccessfulRegistration()
+    {
+        $this
+            ->visit(route("register"))
+            ->type('uniqueUsername', 'username')
+            ->type('test@example.com', 'email')
+            ->type('testpass', 'password1')
+            ->type('testpass', 'password2')
+            ->press('Register')
+            ->seePageIs(route("register"))
+            ->see(trans("public.message.success.registration"));
+    }
+
+    /**
+     * Checks that we receive a confirmation email after a successful registration
+     */
+    public function testReceiveConfirmationEmail()
+    {
+        //@TODO: To implement mailcatcher and it functionality
+        $this
+            ->visit(route("register"))
+            ->type('uniqueUsername', 'username')
+            ->type('test@example.com', 'email')
+            ->type('testpass', 'password1')
+            ->type('testpass', 'password2')
+            ->press('Register')
+            ->seePageIs(route("register"))
+            ->see(trans("public.message.success.registration"));
+    }
+
+    /**
+     * Checks that the forgotten email button is available in the page
+     */
+    public function testForgotEmailButtonExist()
+    {
+        $this
+            ->visit(route("register"))
+            ->see(trans("public.links.forgotPassword"));
+    }
+
+    /**
+     * Checks that the forgotten button redirects to the correct page
+     */
+    public function testForgotEmailRedirect()
+    {
+        $this
+            ->visit(route("register"))
+            ->press(trans("public.links.forgotPassword"))
+            ->seePageIs(route("forgotPassword"));
+    }
 }
