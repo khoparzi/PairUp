@@ -17,7 +17,7 @@ class ForgotPasswordFunctionalTest extends TestCase
             ->loginTestUser()
             ->visitForgotPasswordPage()
             ->seePageIs('/')
-            ->see("If you have forgotten your password, please sign out first");
+            ->see(trans('public.words.forgotten.signOutFirst'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ForgotPasswordFunctionalTest extends TestCase
     {
         $this
             ->visitForgotPasswordPage()
-            ->click("Aha, I've remembered my password")
+            ->click(trans('public.words.forgotten.rememberedAfterAll'))
             ->seePageIs('/login');
     }
 
@@ -40,7 +40,7 @@ class ForgotPasswordFunctionalTest extends TestCase
     {
         $this
             ->submitEmail('')
-            ->see("The email field cannot be empty");
+            ->see(trans('public.words.forgotten.emailRequired'));
     }
 
     /**
@@ -79,7 +79,7 @@ class ForgotPasswordFunctionalTest extends TestCase
     {
         $this
             ->submitEmail('test@example.com')
-            ->see("Your password reminder request has been received, and an email will be sent to the specified address");
+            ->see(trans('public.words.forgotten.reminderRequestReceived'));
     }
 
     /**
@@ -107,7 +107,7 @@ class ForgotPasswordFunctionalTest extends TestCase
     {
         return $this
             ->submitEmail($email)
-            ->see("That email address is  not valid");
+            ->see(trans('public.words.forgotten.emailNotValid'));
     }
 
     /**
