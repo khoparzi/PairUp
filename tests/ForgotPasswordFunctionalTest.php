@@ -105,7 +105,8 @@ class ForgotPasswordFunctionalTest extends TestCase
      */
     protected function submitInvalidEmail($email)
     {
-        return $this->submitEmail('@example.com')
+        return $this
+            ->submitEmail($email)
             ->see("That email address is  not valid");
     }
 
