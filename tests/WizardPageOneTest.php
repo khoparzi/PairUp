@@ -8,20 +8,20 @@ class WizardPageOneTest extends TestCase
     public function testNextButtonExist()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->see(trans("public.wizard.next"));
     }
 
     public function testNextButtonRedirect()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->press(trans("public.wizard.next"))
             ->seePageIs(route('wizard.SecondPage'));
     }
@@ -29,50 +29,50 @@ class WizardPageOneTest extends TestCase
     public function testFormExist()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->see("personalDataForm");
     }
 
     public function testFirstNameFieldExist()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->see(trans("forms.first_name"));
     }
 
     public function testLastNameFieldExist()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->see(trans("forms.last_name"));
     }
 
     public function testTownFieldExist()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->see(trans("forms.town"));
     }
 
     public function testCountryFieldExist()
     {
         $this
-            ->visit('/login')
+            ->visit(route('login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/1')
+            ->visit(route('wizard.first'))
             ->see(trans("forms.country"));
     }
 }
