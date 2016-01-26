@@ -16,7 +16,7 @@ class ForgotPasswordFunctionalTest extends TestCase
         $this
             ->loginTestUser()
             ->visitForgotPasswordPage()
-            ->seePageIs(route('public.homepage'))
+            ->seePageIs(route('public.welcome'))
             ->see(trans('public.words.forgotten.signOutFirst'));
     }
 

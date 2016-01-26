@@ -21,13 +21,13 @@ class RegistrationTest extends TestCase
     public function testPasswordMismatch()
     {
         $this
-            ->visit('/register')
+            ->visit(route('public.register'))
             ->type('testuser', 'username')
             ->type('test@example.com', 'email')
             ->type('testpass', 'password1')
             ->type('testpass-different', 'password2')
             ->press('Register')
-            ->seePageIs(route("register"))
+            ->seePageIs(route("public.register"))
             ->see(trans("validation.confirmed"));
     }
 
@@ -37,13 +37,13 @@ class RegistrationTest extends TestCase
     public function testUsernameAlreadyTaken()
     {
         $this
-            ->visit(route("register"))
+            ->visit(route("public.register"))
             ->type('repeatedUsername', 'username')
             ->type('test@example.com', 'email')
             ->type('testpass', 'password1')
             ->type('testpass', 'password2')
             ->press('Register')
-            ->seePageIs(route("register"))
+            ->seePageIs(route("public.register"))
             ->see(trans("validation.custom.nicknameTaken"));
     }
 
@@ -53,13 +53,13 @@ class RegistrationTest extends TestCase
     public function testSuccessfulRegistration()
     {
         $this
-            ->visit(route("register"))
+            ->visit(route("public.register"))
             ->type('uniqueUsername', 'username')
             ->type('test@example.com', 'email')
             ->type('testpass', 'password1')
             ->type('testpass', 'password2')
             ->press('Register')
-            ->seePageIs(route("register"))
+            ->seePageIs(route("public.register"))
             ->see(trans("public.message.success.registration"));
     }
 
@@ -70,13 +70,13 @@ class RegistrationTest extends TestCase
     {
         //@TODO: To implement mailcatcher and it functionality
         $this
-            ->visit(route("register"))
+            ->visit(route("public.register"))
             ->type('uniqueUsername', 'username')
             ->type('test@example.com', 'email')
             ->type('testpass', 'password1')
             ->type('testpass', 'password2')
             ->press('Register')
-            ->seePageIs(route("register"))
+            ->seePageIs(route("public.register"))
             ->see(trans("public.message.success.registration"));
     }
 
@@ -86,7 +86,7 @@ class RegistrationTest extends TestCase
     public function testForgotEmailButtonExist()
     {
         $this
-            ->visit(route("register"))
+            ->visit(route("public.register"))
             ->see(trans("public.links.forgotPassword"));
     }
 
@@ -96,7 +96,7 @@ class RegistrationTest extends TestCase
     public function testForgotEmailRedirect()
     {
         $this
-            ->visit(route("register"))
+            ->visit(route("public.register"))
             ->press(trans("public.links.forgotPassword"))
             ->seePageIs(route("forgotPassword"));
     }

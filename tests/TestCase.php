@@ -25,7 +25,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     /**
      * A method to login as a test user in a Laravel (non-Selenium) functional test
-     * 
+     *
      * @todo Subject to field names to be decided
      * @todo Check the informational message is within a success class
      */
@@ -33,7 +33,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         // Do a login here
         $this->
-            visit('/login')->
+            visit(route("public.login"))->
             type('testuser', 'username')->
             type('testpass', 'password')->
             press(trans('public.buttons.login'))->

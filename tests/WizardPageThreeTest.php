@@ -17,7 +17,7 @@ class WizardPageThreeTest extends TestCase
         $this
             ->visitWizardPageThree()
             ->click(trans('public.wizard.previous'))
-            ->seePageIs(route('wizard.second'));
+            ->seePageIs(route('public.wizard.second'));
     }
 
     /**
@@ -33,7 +33,7 @@ class WizardPageThreeTest extends TestCase
             ->type('value', 'field')
             ->type('value', 'field')
             ->click(trans('public.wizard.finish'))
-            ->seePageIs(route('wizard.second'))
+            ->seePageIs(route('public.wizard.second'))
             ->checkSuccessfulSaveMessage();
 
         // Check that the save was successful
@@ -137,6 +137,6 @@ class WizardPageThreeTest extends TestCase
     {
         return $this
             ->loginTestUser()
-            ->visit(route('wizard.third'));
+            ->visit(route('public.wizard.third'));
     }
 }
