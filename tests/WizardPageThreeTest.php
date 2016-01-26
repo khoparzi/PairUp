@@ -40,7 +40,7 @@ class WizardPageThreeTest extends TestCase
         $this
             ->visit('/profile/testuser')
             ->see(trans('profile.title', ['username' => 'testuser']))
-            ->see("Description"); // FIXME
+            ->see(trans('public.profile.description'));
     }
 
     /**

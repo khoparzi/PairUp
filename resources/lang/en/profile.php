@@ -1,5 +1,6 @@
 <?php
 
 return [
-    "title" => ":username's profile"
+    "title" => ":username's profile",
+    "description" => "Description",
 ];
