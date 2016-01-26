@@ -11,7 +11,7 @@ class WizardPageTwoTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/2')
+            ->visitWizardPage(2)
             ->see(trans("public.wizard.new_skill"));
     }
 
@@ -21,7 +21,7 @@ class WizardPageTwoTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/2')
+            ->visitWizardPage(2)
             ->see(trans("public.wizard.previous"));
     }
 
@@ -31,7 +31,7 @@ class WizardPageTwoTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/2')
+            ->visitWizardPage(2)
             ->see(trans("public.wizard.next"));
     }
 
@@ -41,7 +41,7 @@ class WizardPageTwoTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/2')
+            ->visitWizardPage(2)
             ->press(trans("public.wizard.previous"))
             ->seePageIs(route('wizard.FirstPage'));
     }
@@ -52,7 +52,7 @@ class WizardPageTwoTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/2')
+            ->visitWizardPage(2)
             ->press(trans("public.wizard.next"))
             ->seePageIs(route('wizard.ThirdPage'));
     }
@@ -63,7 +63,7 @@ class WizardPageTwoTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit('/edit/profile/2')
+            ->visitWizardPage(2)
             ->press(trans("public.wizard.new_skill"))
             ->seePageIs(route('wizard.AddSkill'));
     }

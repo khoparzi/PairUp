@@ -18,7 +18,7 @@ class WizardPageThreeTest extends TestCase
         $this
             ->visitWizardPageThree()
             ->click(trans('public.wizard.previous'))
-            ->seePageIs('/edit/profile/2');
+            ->seePageIs(route('edit.profile', ['page' => 2, ]));
     }
 
     /**
@@ -34,7 +34,7 @@ class WizardPageThreeTest extends TestCase
             ->type('value', 'field')
             ->type('value', 'field')
             ->click(trans('public.wizard.finish'))
-            ->seePageIs('/edit/profile/2')
+            ->seePageIs(route('edit.profile', ['page' => 2, ]))
             ->checkSuccessfulSaveMessage();
 
         // Check that the save was successful

@@ -11,7 +11,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->see(trans("public.wizard.next"));
     }
 
@@ -21,7 +21,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->press(trans("public.wizard.next"))
             ->seePageIs(route('wizard.SecondPage'));
     }
@@ -32,7 +32,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->see("personalDataForm");
     }
 
@@ -42,7 +42,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->see(trans("forms.first_name"));
     }
 
@@ -52,7 +52,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->see(trans("forms.last_name"));
     }
 
@@ -62,7 +62,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->see(trans("forms.town"));
     }
 
@@ -72,7 +72,7 @@ class WizardPageOneTest extends TestCase
             ->visit('/login')
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('profile.edit'), ['page' => 1, ])
+            ->visitWizardPage()
             ->see(trans("forms.country"));
     }
 }
