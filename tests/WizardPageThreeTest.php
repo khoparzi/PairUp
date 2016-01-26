@@ -25,23 +25,25 @@ class WizardPageThreeTest extends TestCase
      * When successfully saving, check we send the user to the profile screen
      *
      * This wasn't in the wireframe/spec, so Umbert and myself just agreed on where to send them.
+     *
+     * @todo Swap out hardwired URLs with routes
      */
     public function clickingFinishSavesAndGoesToProfileBrowser()
     {
         // Check we go to the right place and get a save message
+        $desc = "This is the description for testuser";
         $this
             ->visitWizardPageThree()
-            ->type('value', 'field')
-            ->type('value', 'field')
+            ->type('url', 'http://example.com')
+            ->type('description', $desc)
             ->click(trans('public.wizard.finish'))
-            ->seePageIs(route('edit.profile', ['page' => 2, ]))
-            ->checkSuccessfulSaveMessage();
+            ->checkSuccessfulSave();
 
         // Check that the save was successful
         $this
             ->visit('/profile/testuser')
             ->see(trans('profile.title', ['username' => 'testuser']))
-            ->see("Description"); // FIXME
+            ->see($desc);
     }
 
     /**
@@ -51,12 +53,9 @@ class WizardPageThreeTest extends TestCase
     {
         $this
             ->visitWizardPageThree()
-            ->click(trans('public.wizard.finish'));
-
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+            ->type('url', '')
+            ->click(trans('public.wizard.finish'))
+            ->checkSuccessfulSave();
     }
 
     /**
@@ -64,10 +63,11 @@ class WizardPageThreeTest extends TestCase
      */
     public function testNonWebUrlIsDisallowed()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this
+            ->visitWizardPageThree()
+            ->type('url', '')
+            ->click(trans('public.wizard.finish'));
+        // FIXME
     }
 
     /**
@@ -112,6 +112,16 @@ class WizardPageThreeTest extends TestCase
         $this->markTestIncomplete(
             'This test has not been implemented yet.'
         );
+    }
+
+    /**
+     * Checks that we get a successful save message, and that the page redirects as expected
+     */
+    protected function checkSuccessfulSave()
+    {
+        return $this
+            ->checkSuccessfulSaveMessage()
+            ->seePageIs('/profile/testuser');
     }
 
     /**
