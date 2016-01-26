@@ -36,7 +36,7 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('url', 'http://example.com')
             ->type('description', $desc)
-            ->click(trans('public.wizard.finish'))
+            ->clickFinish()
             ->checkSuccessfulSave();
 
         // Check that the save was successful
@@ -54,31 +54,38 @@ class WizardPageThreeTest extends TestCase
         $this
             ->visitWizardPageThree()
             ->type('url', '')
-            ->click(trans('public.wizard.finish'))
+            ->clickFinish()
             ->checkSuccessfulSave();
     }
 
     /**
      * If there is anything in the URL field it must be http or https
+     *
+     * @todo Add hardwired language string to dictionary
      */
     public function testNonWebUrlIsDisallowed()
     {
         $this
             ->visitWizardPageThree()
             ->type('url', '')
-            ->click(trans('public.wizard.finish'));
-        // FIXME
+            ->clickFinish()
+            ->see('Only http and https URLs are permitted');
     }
 
     /**
      * Let's refuse URLs that are too long
+     *
+     * @todo Add hardwired language string to dictionary
+     * @todo Centralise the maximum length here and in the validator that does the test
      */
     public function testExcessivelyLongUrlIsDisallowed()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $url = "http://" . str_repeat('long.string.', 100);
+        $this
+            ->visitWizardPageThree()
+            ->type('url', $url)
+            ->clickFinish()
+            ->see('Profile URLs may be up to 200 characters long');
     }
 
     /**
@@ -86,32 +93,42 @@ class WizardPageThreeTest extends TestCase
      */
     public function testEmptyDescriptionIsAllowed()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this
+            ->visitWizardPageThree()
+            ->type('description', '')
+            ->clickFinish()
+            ->checkSuccessfulSave();
     }
 
     /**
      * Disallow a profile description over a certain length
+     *
+     * @todo Add hardwired language string to dictionary
+     * @todo Centralise the maximum length int here and in the validator that does the test
      */
     public function testExcessivelyLongDescriptionIsDisallowed()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $url = "http://" . str_repeat('long.string.', 100);
+        $this
+            ->visitWizardPageThree()
+            ->type('description', $url)
+            ->clickFinish()
+            ->see('Profile URLs may be up to 200 characters long');
     }
 
     /**
      * Let's check that JavaScript inside Markdown is rendered harmless
+     *
+     * @todo Check that if the JavaScript really were to be injected, this test would fail!
      */
     public function testJavaScriptIsMadeSafe()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $jsInjection = "<script type='text/javascript'>alert('Hello');</script>";
+        $this
+            ->visitWizardPageThree()
+            ->type('description', $jsInjection)
+            ->clickFinish()
+            ->see($jsInjection);
     }
 
     /**
@@ -137,6 +154,17 @@ class WizardPageThreeTest extends TestCase
         return $this->see(
             "Profile saved successfully. Now go ahead and browse profiles of available users!"
         );
+    }
+
+    /**
+     * Clicks the finish button in the third wizard page
+     *
+     * @return \WizardPageThreeTest
+     */
+    protected function clickFinish()
+    {
+        return $this
+            ->click(trans('public.wizard.finish'));
     }
 
     /**
