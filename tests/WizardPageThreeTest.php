@@ -138,6 +138,6 @@ class WizardPageThreeTest extends TestCase
     {
         return $this
             ->loginTestUser()
-            ->visit('/edit/profile/3');
+            ->visitWizardPage(3);
     }
 }
