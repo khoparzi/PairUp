@@ -128,6 +128,8 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('description', $jsInjection)
             ->clickFinish()
+            ->checkSuccessfulSave()
+            ->visit('/profile/testuser')
             ->see($jsInjection);
     }
 
