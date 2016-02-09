@@ -15,7 +15,7 @@ class LoginTest extends TestCase
     public function testEmptyEmail()
     {
         $this
-            ->visit('/login')
+            ->visit(route('public.login'))
             ->type('this_is_a_password', 'password')
             ->pressSubmit()
             ->see(trans('validation.required', array('attribute' => 'email')));
@@ -27,7 +27,7 @@ class LoginTest extends TestCase
     public function testEmptyPassword()
     {
         $this
-            ->visit('/login')
+            ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
             ->see(trans('validation.required', array('attribute' => 'password')));
@@ -39,7 +39,7 @@ class LoginTest extends TestCase
     public function testInvalidEmail()
     {
         $this
-            ->visit('/login')
+            ->visit(route('public.login'))
             ->type('INVALID@test@Email.c', 'email')
             ->type('valid_password', 'password')
             ->pressSubmit()
@@ -52,7 +52,7 @@ class LoginTest extends TestCase
     public function testValidLogin()
     {
         $this
-            ->visit('/login')
+            ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->type('valid_password', 'password')
             ->pressSubmit()
@@ -65,7 +65,7 @@ class LoginTest extends TestCase
     public function testInvalidLogin()
     {
         $this
-            ->visit('/login')
+            ->visit(route('public.login'))
             ->type('INVALID@testEmail.com', 'email')
             ->type('INVALID_password', 'password')
             ->pressSubmit()
@@ -78,7 +78,7 @@ class LoginTest extends TestCase
     public function testForgotPaswordLinkDrivesToThePage()
     {
         $this
-            ->visit('/login')
+            ->visit(route('public.login'))
             ->press(trans("public.links.forgotPassword"))
             ->seePageIs(route("forgotPassword"));
     }

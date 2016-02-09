@@ -28,7 +28,7 @@ class ForgotPasswordFunctionalTest extends TestCase
         $this
             ->visitForgotPasswordPage()
             ->click(trans('public.words.forgotten.rememberedAfterAll'))
-            ->seePageIs('/login');
+            ->seePageIs(route('public.login'));
     }
 
     /**
@@ -117,7 +117,7 @@ class ForgotPasswordFunctionalTest extends TestCase
      */
     protected function visitForgotPasswordPage()
     {
-        return $this->visit('/forgot-password');
+        return $this->visit(route('public.forgotPassword'));
     }
 
     /**

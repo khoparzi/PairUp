@@ -3,7 +3,6 @@
 /**
  * Functional tests for the profile wizard
  *
- * @todo Swap out hardcoded routes for Laravel routes
  * @todo Umbert and I have agreed today that Next on page 1 and page 2 does not save, it
  * just goes between pages. Thus I'll need to work out how to inject pages 1 and 2 before
  * doing any successful saves - or do those screens not have mandatory info?
@@ -43,6 +42,7 @@ class WizardPageThreeTest extends TestCase
         $this
             ->visit('/profile/testuser')
             ->see(trans('profile.title', ['username' => 'testuser']))
+            ->see(trans('public.profile.description'))
             ->see($desc);
     }
 
@@ -178,6 +178,6 @@ class WizardPageThreeTest extends TestCase
     {
         return $this
             ->loginTestUser()
-            ->visitWizardPage(3);
+            ->visit(route('public.wizard.third'));
     }
 }
