@@ -11,7 +11,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->see(trans("public.wizard.next"));
     }
 
@@ -21,7 +21,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->press(trans("public.wizard.next"))
             ->seePageIs(route('public.wizard.SecondPage'));
     }
@@ -32,7 +32,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->see("personalDataForm");
     }
 
@@ -42,7 +42,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->see(trans("forms.first_name"));
     }
 
@@ -52,7 +52,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->see(trans("forms.last_name"));
     }
 
@@ -62,7 +62,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->see(trans("forms.town"));
     }
 
@@ -72,7 +72,7 @@ class WizardPageOneTest extends TestCase
             ->visit(route('public.login'))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.first'))
+            ->visitFirstWizardPage()
             ->see(trans("forms.country"));
     }
 }

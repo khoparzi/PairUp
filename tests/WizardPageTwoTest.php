@@ -11,7 +11,7 @@ class WizardPageTwoTest extends TestCase
             ->visit(route("public.login"))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.second'))
+            ->visitSecondWizardPage()
             ->see(trans("public.wizard.new_skill"));
     }
 
@@ -21,7 +21,7 @@ class WizardPageTwoTest extends TestCase
             ->visit(route("public.login"))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.second'))
+            ->visitSecondWizardPage()
             ->see(trans("public.wizard.previous"));
     }
 
@@ -31,7 +31,7 @@ class WizardPageTwoTest extends TestCase
             ->visit(route("public.login"))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.second'))
+            ->visitSecondWizardPage()
             ->see(trans("public.wizard.next"));
     }
 
@@ -41,7 +41,7 @@ class WizardPageTwoTest extends TestCase
             ->visit(route("public.login"))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.second'))
+            ->visitSecondWizardPage()
             ->press(trans("public.wizard.previous"))
             ->seePageIs(route('public.wizard.first'));
     }
@@ -52,7 +52,7 @@ class WizardPageTwoTest extends TestCase
             ->visit(route("public.login"))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.second'))
+            ->visitSecondWizardPage()
             ->press(trans("public.wizard.next"))
             ->seePageIs(route('public.wizard.third'));
     }
@@ -63,7 +63,7 @@ class WizardPageTwoTest extends TestCase
             ->visit(route("public.login"))
             ->type('valid@testEmail.com', 'email')
             ->pressSubmit()
-            ->visit(route('public.wizard.second'))
+            ->visitSecondWizardPage()
             ->press(trans("public.wizard.new_skill"))
             ->seePageIs(route('public.wizard.AddSkill'));
     }

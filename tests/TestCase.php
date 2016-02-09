@@ -42,4 +42,25 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $this;
     }
+
+    /**
+     * Deprecated for now
+     *
+     * @param integer $page
+     * @return TestCase
+     */
+    protected function visitWizardPage($page = 1)
+    {
+        return $this->visit(route('profile.edit'), ['page' => $page, ]);
+    }
+
+    protected function visitFirstWizardPage()
+    {
+        return $this->visit(route('public.wizard.first'));
+    }
+
+    protected function visitSecondWizardPage()
+    {
+        return $this->visit(route('public.wizard.first'));
+    }
 }
