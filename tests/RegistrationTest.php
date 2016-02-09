@@ -11,7 +11,8 @@ class RegistrationTest extends TestCase
     public function testAllFieldsMissing()
     {
         $this
-            ->press('Register')
+            ->visit(route('public.register'))
+            ->press(trans('public.buttons.register'))
             ->see(trans("validation.required"));
     }
 
@@ -26,7 +27,7 @@ class RegistrationTest extends TestCase
             ->type('test@example.com', 'email')
             ->type('testpass', 'password1')
             ->type('testpass-different', 'password2')
-            ->press('Register')
+            ->press(trans('public.buttons.register'))
             ->seePageIs(route("public.register"))
             ->see(trans("validation.confirmed"));
     }

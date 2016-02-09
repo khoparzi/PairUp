@@ -21,6 +21,7 @@ return [
     "buttons" => [
         "login" => "Login",
         "sendPassword" => "Send password reset link",
+        "register" => "Register",
     ],
     "wizard" => [
         "previous" => "Previous",
