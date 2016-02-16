@@ -13,9 +13,9 @@ class AddCountryIdToProfilesTable extends Migration
     public function up()
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->integer('country_id')->unsigned();
+            $table->integer('country_id')->uuid();
             $table->foreign('country_id')
-                ->references('id')->on('profiles');
+                ->references('id')->on('countries');
         });
     }
 
