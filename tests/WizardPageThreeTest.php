@@ -24,8 +24,6 @@ class WizardPageThreeTest extends TestCase
      * When successfully saving, check we send the user to the profile screen
      *
      * This wasn't in the wireframe/spec, so Umbert and myself just agreed on where to send them.
-     *
-     * @todo Swap out hardwired URLs with routes
      */
     public function clickingFinishSavesAndGoesToProfileBrowser()
     {
@@ -40,7 +38,7 @@ class WizardPageThreeTest extends TestCase
 
         // Check that the save was successful
         $this
-            ->visit('/profile/testuser')
+            ->visit(route('profile.view'))
             ->see(trans('profile.title', ['username' => 'testuser']))
             ->see(trans('public.profile.description'))
             ->see($desc);
@@ -100,7 +98,6 @@ class WizardPageThreeTest extends TestCase
     /**
      * Disallow a profile description over a certain length
      *
-     * @todo Add hardwired language string to dictionary
      * @todo Centralise the maximum length int here and in the validator that does the test
      */
     public function testExcessivelyLongDescriptionIsDisallowed()
