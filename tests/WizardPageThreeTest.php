@@ -60,8 +60,6 @@ class WizardPageThreeTest extends TestCase
 
     /**
      * If there is anything in the URL field it must be http or https
-     *
-     * @todo Add hardwired language string to dictionary
      */
     public function testNonWebUrlIsDisallowed()
     {
@@ -69,13 +67,12 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('url', '')
             ->clickFinish()
-            ->see('Only http and https URLs are permitted');
+            ->see(trans('public.wizard.errors.urlProtocols'));
     }
 
     /**
      * Let's refuse URLs that are too long
      *
-     * @todo Add hardwired language string to dictionary
      * @todo Centralise the maximum length here and in the validator that does the test
      */
     public function testExcessivelyLongUrlIsDisallowed()
@@ -85,7 +82,7 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('url', $url)
             ->clickFinish()
-            ->see('Profile URLs may be up to 200 characters long');
+            ->see(trans('public.wizard.errors.urlLength'));
     }
 
     /**
@@ -113,7 +110,7 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('description', $url)
             ->clickFinish()
-            ->see('Profile URLs may be up to 200 characters long');
+            ->see(trans('public.wizard.errors.descriptionLength'));
     }
 
     /**
@@ -153,9 +150,8 @@ class WizardPageThreeTest extends TestCase
      */
     protected function checkSuccessfulSaveMessage()
     {
-        return $this->see(
-            "Profile saved successfully. Now go ahead and browse profiles of available users!"
-        );
+        return $this->
+            see(trans('public.wizard.saved'));
     }
 
     /**

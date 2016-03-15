@@ -35,6 +35,12 @@ return [
         ],
         "new_skill" => "Add a skill",
         "no_skills" => "No skills added",
+        "errors" => [
+            "descriptionLength" => "Profile descriptions may be up to 200 characters long",
+            "urlProtocols" => "Only http and https URLs are permitted",
+            "urlLength" => "Profile URLs may be up to 200 characters long",
+        ],
+        "saved" => "Profile saved successfully. Now go ahead and browse profiles of available users",
     ],
     "message" => [
         "success" => [
