@@ -62,4 +62,14 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     {
         return $this->visit(route('public.wizard.first'));
     }
+
+    protected function seeSuccessMessage($message)
+    {
+        return $this->seeInElement('div.success', $message);
+    }
+
+    protected function seeErrorMessage($message)
+    {
+        return $this->seeInElement('div.error', $message);
+    }
 }
