@@ -1,27 +1,65 @@
-<form method="POST" action="/auth/register">
-    {!! csrf_field() !!}
+@extends('layouts.master')
 
-    <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
-    </div>
+@section('head_extra_styles')
+    body {
+    padding-bottom: 40px;
+    background-color: #eee;
+    }
 
-    <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
-    </div>
+    .form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    }
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+    margin-bottom: 10px;
+    }
+    .form-signin .checkbox {
+    font-weight: normal;
+    }
+    .form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+    z-index: 2;
+    }
+    .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    }
+@endsection
+@section('content')
+    <form method="POST" action="/auth/register" class="form-signin">
+        {!! csrf_field() !!}
+        @if ($errors->count())
+            <p>
+                {{ $errors->first('email') }}
+                {{ $errors->first('password') }}
+            </p>
+        @endif
 
-    <div>
-        Password
-        <input type="password" name="password">
-    </div>
+        <h2 class="form-signin-heading">Please register in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="" autofocus="" value="{{ old('email') }}">
 
-    <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
-    </div>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="">
 
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+        <label for="password_confirmation" class="sr-only">Confirm Password</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Confirm Password" required="">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
+@endsection
