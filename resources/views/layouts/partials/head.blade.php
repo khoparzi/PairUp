@@ -10,5 +10,5 @@
 
     <link rel="stylesheet" href="{{ elixir('assets/css/app.css') }}">
 
-    <style type="text/css"></style>
+    <style type="text/css">@yield('head_extra_styles')</style>
 </head>
