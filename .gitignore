@@ -1,3 +1,4 @@
+/Vagrantfile
 # Ignore dependencies
 vendor/
 composer.phar
@@ -13,3 +14,5 @@ nbproject/
 Homestead.yaml
 Homestead.json
 .env
+/bower_components
+/public/assets

@@ -10,7 +10,10 @@ class ProfileViewTest extends TestCase
      */
     public function testProfileTitle()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -18,7 +21,10 @@ class ProfileViewTest extends TestCase
      */
     public function testProfilePersonalInfo()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -26,7 +32,10 @@ class ProfileViewTest extends TestCase
      */
     public function testProfileEmptySkillsMatrix()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -36,7 +45,10 @@ class ProfileViewTest extends TestCase
      */
     public function testProfileNonEmptySkillsMatrix()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 
     /**
@@ -46,6 +58,9 @@ class ProfileViewTest extends TestCase
      */
     public function testProfileSendEmail()
     {
-
+        // @todo Finish this
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 }
