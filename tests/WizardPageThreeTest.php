@@ -3,7 +3,7 @@
 /**
  * Functional tests for the profile wizard
  *
- * @todo Umbert and I have agreed today that Next on page 1 and page 2 does not save, it
+ * Umbert and I have agreed today that Next on page 1 and page 2 does not save, it
  * just goes between pages. Thus I'll need to work out how to inject pages 1 and 2 before
  * doing any successful saves - or do those screens not have mandatory info?
  */
@@ -24,8 +24,6 @@ class WizardPageThreeTest extends TestCase
      * When successfully saving, check we send the user to the profile screen
      *
      * This wasn't in the wireframe/spec, so Umbert and myself just agreed on where to send them.
-     *
-     * @todo Swap out hardwired URLs with routes
      */
     public function clickingFinishSavesAndGoesToProfileBrowser()
     {
@@ -40,7 +38,7 @@ class WizardPageThreeTest extends TestCase
 
         // Check that the save was successful
         $this
-            ->visit('/profile/testuser')
+            ->visit(route('profile.view'))
             ->see(trans('profile.title', ['username' => 'testuser']))
             ->see(trans('public.profile.description'))
             ->see($desc);
@@ -60,8 +58,6 @@ class WizardPageThreeTest extends TestCase
 
     /**
      * If there is anything in the URL field it must be http or https
-     *
-     * @todo Add hardwired language string to dictionary
      */
     public function testNonWebUrlIsDisallowed()
     {
@@ -69,13 +65,12 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('url', '')
             ->clickFinish()
-            ->see('Only http and https URLs are permitted');
+            ->see(trans('public.wizard.errors.urlProtocols'));
     }
 
     /**
      * Let's refuse URLs that are too long
      *
-     * @todo Add hardwired language string to dictionary
      * @todo Centralise the maximum length here and in the validator that does the test
      */
     public function testExcessivelyLongUrlIsDisallowed()
@@ -85,7 +80,7 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('url', $url)
             ->clickFinish()
-            ->see('Profile URLs may be up to 200 characters long');
+            ->see(trans('public.wizard.errors.urlLength'));
     }
 
     /**
@@ -103,7 +98,6 @@ class WizardPageThreeTest extends TestCase
     /**
      * Disallow a profile description over a certain length
      *
-     * @todo Add hardwired language string to dictionary
      * @todo Centralise the maximum length int here and in the validator that does the test
      */
     public function testExcessivelyLongDescriptionIsDisallowed()
@@ -113,7 +107,7 @@ class WizardPageThreeTest extends TestCase
             ->visitWizardPageThree()
             ->type('description', $url)
             ->clickFinish()
-            ->see('Profile URLs may be up to 200 characters long');
+            ->see(trans('public.wizard.errors.descriptionLength'));
     }
 
     /**
@@ -153,9 +147,8 @@ class WizardPageThreeTest extends TestCase
      */
     protected function checkSuccessfulSaveMessage()
     {
-        return $this->see(
-            "Profile saved successfully. Now go ahead and browse profiles of available users!"
-        );
+        return $this->
+            see(trans('public.wizard.saved'));
     }
 
     /**

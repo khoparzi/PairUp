@@ -26,7 +26,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
     /**
      * A method to login as a test user in a Laravel (non-Selenium) functional test
      *
-     * @todo Subject to field names to be decided
      * @todo Check the informational message is within a success class
      */
     protected function loginTestUser()

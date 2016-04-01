@@ -15,7 +15,7 @@ Route::get('/', ["as" => "public.welcome" , function () {
     return view('welcome');
 }]);
 
-// @todo Make {page} optional and use a regex match
+// @todo For the two pages, make {page} optional and use a regex match
 
 // List profiles (first page)
 Route::get(
@@ -27,6 +27,12 @@ Route::get(
 Route::get(
     'profiles/{page}',
     ["as" => "profile.browse", 'uses' => 'Profile\ProfileController@index']
+);
+
+// View profile
+Route::get(
+    'profile/{username}',
+     ["as" => "profile.view", 'uses' => 'Profile\ProfileController@view']
 );
 
 // Edit profile (first page)
