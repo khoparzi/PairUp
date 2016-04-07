@@ -41,7 +41,7 @@ class ProfileBrowserTest extends TestCase
     public function testBrowserNoUsers()
     {
         $this->visit(route('profile.browse'))
-            ->see(tran('profile.browse.nousers'));
+            ->see(tran('profile.browse.no_users'));
     }
 
     /**
