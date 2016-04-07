@@ -23,11 +23,16 @@ class ProfileBrowserTest extends TestCase
      */
     public function testSingleUserCard()
     {
+        // Create a user with the username 'johndoe'
         $user = factory(User::class)->create(['username'=>'johndoe']);
+        // Add a profile record to the user
         $profile = factory(Profile::class)->make(['country_id'=>4]);
+        // Save the user
         $user->profile()->save($profile);
+        // Goto the profile browse page
         $this->visit(route('profile.browse'))
-            ->see('johndoe');
+        // Check if there is a card with the name 'johndoe'
+            ->see('seeInElement', 'profile_card', 'johndoe')
     }
 
     /**
@@ -44,6 +49,7 @@ class ProfileBrowserTest extends TestCase
      */
     public function testBrowserNoPagination()
     {
+        // Add 12 profiles with users
         factory(Profile::class, 'withAUser', 12)->create();
         $this->visit(route('profile.browse'))
             ->dontSee(tran('pagination.next'));
@@ -65,6 +71,7 @@ class ProfileBrowserTest extends TestCase
      */
     public function testBrowserGapsInPagination()
     {
+        // Add 12 pages of records to the DB
         factory(Profile::class, 'withAUser', 144)->create();
         $this->visit(route('profile.browse'))
             ->see(tran('pagination.next'))
@@ -78,10 +85,26 @@ class ProfileBrowserTest extends TestCase
      */
     public function testPageNumbers()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        for ($i=1; $i < 144; $i++) {
+            $user = factory(User::class)->create(['username'=>'name_' . $i]);
+            $profile = factory(Profile::class)->make(['country_id'=>4]);
+            $user->profile()->save($profile);
+        }
+        $this->visit(route('profile.browse'))
+            // Check if there is a profile card with the name name_1
+            ->see('seeInElement', 'profile_card', 'name_1')
+            // Check if there is a link for the 3rd page
+            ->hasLink('3', route('profile.browse', ['page'=>3]))
+            // Goto page 3
+            ->click('page_3')
+            // Check if there is a profile card with the name name_25
+            ->see('seeInElement', 'profile_card', 'name_25')
+            // Check if there is a link for the 5th page
+            ->hasLink('5', route('profile.browse', ['page'=>5]))
+            // Goto page 5
+            ->click('page_5')
+            // Check if there is a profile card with the name name_49
+            ->see('seeInElement', 'profile_card', 'name_49')
     }
 
     /**
