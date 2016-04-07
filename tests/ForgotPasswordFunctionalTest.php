@@ -7,8 +7,6 @@ class ForgotPasswordFunctionalTest extends TestCase
 {
     /**
      * Checks that viewing the forgot password screen is not possible if logged in
-     *
-     * @todo Check the error is contained within an error class
      */
     public function testRedirectAndErrorIfLoggedIn()
     {
@@ -17,7 +15,7 @@ class ForgotPasswordFunctionalTest extends TestCase
             ->loginTestUser()
             ->visitForgotPasswordPage()
             ->seePageIs(route('public.welcome'))
-            ->see(trans('public.words.forgotten.signOutFirst'));
+            ->seeErrorMessage(trans('public.words.forgotten.signOutFirst'));
     }
 
     /**
@@ -33,14 +31,12 @@ class ForgotPasswordFunctionalTest extends TestCase
 
     /**
      * Checks that the submission of an empty email address results in an error
-     *
-     * @todo Check that the error appears in an error class/style
      */
     public function testSubmitEmptyEmail()
     {
         $this
             ->submitEmail('')
-            ->see(trans('public.words.forgotten.emailRequired'));
+            ->seeErrorMessage(trans('public.words.forgotten.emailRequired'));
     }
 
     /**
@@ -72,14 +68,13 @@ class ForgotPasswordFunctionalTest extends TestCase
      * Note there is no distinction between addresses that exist and those that do not.
      * In test mode, no actual email should be sent.
      *
-     * @todo Check that the success message is in a success CSS class
      * @todo Is there a Laravel feature to check that an email has been sent? Yes, http://mailcatcher.me/
      */
     public function testValidEmail()
     {
         $this
             ->submitEmail('test@example.com')
-            ->see(trans('public.words.forgotten.reminderRequestReceived'));
+            ->seeSuccessMessage(trans('public.words.forgotten.reminderRequestReceived'));
     }
 
     /**
@@ -98,8 +93,6 @@ class ForgotPasswordFunctionalTest extends TestCase
     /**
      * Submits the specified email address and checks for an invalid error
      *
-     * @todo Check the error appears in an error class
-     *
      * @param string $email
      * @return ForgotPasswordFunctionalTest
      */
@@ -107,7 +100,7 @@ class ForgotPasswordFunctionalTest extends TestCase
     {
         return $this
             ->submitEmail($email)
-            ->see(trans('public.words.forgotten.emailNotValid'));
+            ->seeErrorMessage(trans('public.words.forgotten.emailNotValid'));
     }
 
     /**
