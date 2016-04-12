@@ -1,9 +1,9 @@
 <?php
 
-/* 
+/*
  * Functional tests for viewing the profile page
  */
-class ProfileViewTest extends TestCase
+class ProfileViewTest extends PersistanceBasedTest
 {
     /**
      * Checks that the username is suitably reflected in the page subheading
