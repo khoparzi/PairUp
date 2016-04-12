@@ -9,16 +9,6 @@ use App\Models\Profile;
 class ProfileBrowserTest extends PersistanceBasedTest
 {
     /**
-     * Default preparation for each test
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->prepareForTests();
-    }
-
-    /**
      * Tests that a user's details are reflected correctly on a card in the browser
      */
     public function testSingleUserCard()
@@ -133,15 +123,5 @@ class ProfileBrowserTest extends PersistanceBasedTest
             ->seeInElement('pagination', tran('pagination.next'));
         $this->visit(route('profile.browse', ['page'=>3]))
             ->dontSeeInElement('pagination', tran('pagination.next'));
-    }
-
-    /**
-     * Migrates the database and set the mailer to 'pretend'.
-     * This will cause the tests to run quickly.
-     */
-    private function prepareForTests()
-    {
-        Artisan::call('migrate:refresh');
-        $this->seed('CountriesSeeder');
     }
 }
