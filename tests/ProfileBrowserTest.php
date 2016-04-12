@@ -6,18 +6,8 @@ use App\Models\Profile;
 /*
  * Functional tests for the profile browser screen
  */
-class ProfileBrowserTest extends TestCase
+class ProfileBrowserTest extends PersistanceBasedTest
 {
-    /**
-     * Default preparation for each test
-     */
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->prepareForTests();
-    }
-
     /**
      * Tests that a user's details are reflected correctly on a card in the browser
      */
@@ -32,7 +22,7 @@ class ProfileBrowserTest extends TestCase
         // Goto the profile browse page
         $this->visit(route('profile.browse'))
         // Check if there is a card with the name 'johndoe'
-            ->see('seeInElement', 'profile_card', 'johndoe')
+            ->see('seeInElement', 'profile_card', 'johndoe');
     }
 
     /**
@@ -104,7 +94,7 @@ class ProfileBrowserTest extends TestCase
             // Goto page 5
             ->click('page_5')
             // Check if there is a profile card with the name name_49
-            ->see('seeInElement', 'profile_card', 'name_49')
+            ->see('seeInElement', 'profile_card', 'name_49');
     }
 
     /**
@@ -133,15 +123,5 @@ class ProfileBrowserTest extends TestCase
             ->seeInElement('pagination', tran('pagination.next'));
         $this->visit(route('profile.browse', ['page'=>3]))
             ->dontSeeInElement('pagination', tran('pagination.next'));
-    }
-
-    /**
-     * Migrates the database and set the mailer to 'pretend'.
-     * This will cause the tests to run quickly.
-     */
-    private function prepareForTests()
-    {
-        Artisan::call('migrate:refresh');
-        $this->seed('CountriesSeeder');
     }
 }
