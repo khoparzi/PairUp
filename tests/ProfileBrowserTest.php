@@ -22,7 +22,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Goto the profile browse page
         $this->visit(route('profile.browse'))
         // Check if there is a card with the name 'johndoe'
-            ->see('seeInElement', 'profile_card', 'johndoe');
+            ->see('seeInElement', '.profile_card', 'johndoe');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
             ->see(tran('pagination.next'))
-            ->seeInElement('pagination', '1, 2, 3');
+            ->seeInElement('.pagination', '1, 2, 3');
     }
 
     /**
@@ -66,7 +66,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         $this->visit(route('profile.browse'))
             ->see(tran('pagination.next'))
             ->seeInElement(
-                'pagination',
+                '.pagination',
                 '1, 2, 3' . tran('pagination.gap') . '10, 11, 12');
     }
 
@@ -106,9 +106,9 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->dontSeeInElement('pagination', tran('pagination.prev'));
+            ->dontSeeInElement('.pagination', tran('pagination.prev'));
         $this->visit(route('profile.browse', ['page'=>3]))
-            ->seeInElement('pagination', tran('pagination.prev'));
+            ->seeInElement('.pagination', tran('pagination.prev'));
     }
 
     /**
@@ -120,8 +120,8 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->seeInElement('pagination', tran('pagination.next'));
+            ->seeInElement('.pagination', tran('pagination.next'));
         $this->visit(route('profile.browse', ['page'=>3]))
-            ->dontSeeInElement('pagination', tran('pagination.next'));
+            ->dontSeeInElement('.pagination', tran('pagination.next'));
     }
 }

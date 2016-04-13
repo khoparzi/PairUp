@@ -17,8 +17,16 @@ class Profile extends Model
     /*
     * Get the profile's user
     */
-    function user()
+    public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    /**
+     * Get skills for a profile
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
     }
 }

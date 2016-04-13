@@ -10,10 +10,15 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfileTitle()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $faker = Faker\Factory::create();
+        $username = $faker->username;
+        factory(App\Models\Profile::class, 'withAUser', 1)
+            ->create(['username'=>$username]);
+        $profile = DB::table('profiles')->first();
+        $this->assertNotNull($profile->id);
+        // Goto the profile browse page
+        $this->visit(route('profile.show', ['name'=>$username]))
+            ->see(trans('profile.title'));
     }
 
     /**
@@ -21,10 +26,15 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfilePersonalInfo()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $faker = Faker\Factory::create();
+        $username = $faker->username;
+        factory(App\Models\Profile::class, 'withAUser', 1)
+            ->create(['username'=>$username, 'country_id'=>4]);
+        $profile = DB::table('profiles')->first();
+        $this->assertNotNull($profile->id);
+        // Goto the profile browse page
+        $this->visit(route('profile.show', ['name'=>$username]))
+            ->see('seeInElement', '.country', Models\Country::find(4)->full_name);
     }
 
     /**
@@ -32,15 +42,17 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfileEmptySkillsMatrix()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $faker = Faker\Factory::create();
+        $username = $faker->username;
+        factory(App\Models\Profile::class, 'withAUser', 1)
+            ->create(['username'=>$username]);
+        $this->visit(route('profile.show', ['name'=>$username]))
+            ->see('seeInElement', '.skills', trans('profile.show.no_skills'));
     }
 
     /**
      * Checks that skills/stars/flags are correct
-     * 
+     *
      * (Have to decide an ordering here - probably alphabetical on skill name, case-insensitive)
      */
     public function testProfileNonEmptySkillsMatrix()
@@ -53,7 +65,7 @@ class ProfileViewTest extends PersistanceBasedTest
 
     /**
      * Checks that the message box sends an email
-     * 
+     *
      * (I believe Laravel has a feature for this, so an email is not actually sent)
      */
     public function testProfileSendEmail()
