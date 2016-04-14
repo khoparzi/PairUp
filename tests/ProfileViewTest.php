@@ -99,9 +99,9 @@ class ProfileViewTest extends PersistanceBasedTest
             ->shouldReceive('send')
             ->withArgs([\Mockery::on(function($message)
             {
-                $this->assertEquals(tran('profile.message_subject'), $message->getSubject());
+                $this->assertEquals(trans('profile.message_subject'), $message->getSubject());
                 $this->assertSame([$user->profile->email => null], $message->getTo());
-                $this->assertContains(tran('profile.message_body'), $message->getBody());
+                $this->assertContains(trans('profile.message_body'), $message->getBody());
                 return true;
             }), \Mockery::any()])
             ->once();
