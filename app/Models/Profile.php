@@ -27,6 +27,20 @@ class Profile extends Model
      */
     public function tags()
     {
-        return $this->belongsToMany('App\Models\Tag');
+        return $this->belongsToMany('App\Models\Tag')
+            ->withPivot('rating', 'is_seeking', 'is_offering')
+            ->withTimestamps();
+    }
+
+    /**
+     * Add a skill
+     */
+    public function add_tag($tag, $rating=1, $is_seeking = false, $is_offering)
+    {
+        $this->tags()->attach($tag, [
+                'rating'=> $rating,
+                'is_seeking'=> $is_seeking,
+                'is_offering'=> $is_offering
+            ]);
     }
 }

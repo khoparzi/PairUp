@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\User;
+use App\Models\Profile;
+use App\Models\Tag;
+
 /*
  * Functional tests for viewing the profile page
  */
@@ -10,14 +14,14 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfileTitle()
     {
-        $faker = Faker\Factory::create();
-        $username = $faker->username;
-        factory(App\Models\Profile::class, 'withAUser', 1)
-            ->create(['username'=>$username]);
-        $profile = DB::table('profiles')->first();
-        $this->assertNotNull($profile->id);
+        // Create a user with the username 'johndoe'
+        $user = factory(User::class)->create(['username'=>'johndoe']);
+        // Add a profile record to the user
+        $profile = factory(Profile::class)->make(['country_id'=>4]);
+        // Save the user
+        $user->profile()->save($profile);
         // Goto the profile browse page
-        $this->visit(route('profile.show', ['name'=>$username]))
+        $this->visit(route('profile.view', ['name'=>'johndoe']))
             ->see(trans('profile.title'));
     }
 
@@ -26,14 +30,14 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfilePersonalInfo()
     {
-        $faker = Faker\Factory::create();
-        $username = $faker->username;
-        factory(App\Models\Profile::class, 'withAUser', 1)
-            ->create(['username'=>$username, 'country_id'=>4]);
-        $profile = DB::table('profiles')->first();
-        $this->assertNotNull($profile->id);
+        // Create a user with the username 'johndoe'
+        $user = factory(User::class)->create(['username'=>'johndoe']);
+        // Add a profile record to the user
+        $profile = factory(Profile::class)->make(['country_id'=>4]);
+        // Save the user
+        $user->profile()->save($profile);
         // Goto the profile browse page
-        $this->visit(route('profile.show', ['name'=>$username]))
+        $this->visit(route('profile.view', ['name'=>'johndoe']))
             ->see('seeInElement', '.country', Models\Country::find(4)->full_name);
     }
 
@@ -42,11 +46,9 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfileEmptySkillsMatrix()
     {
-        $faker = Faker\Factory::create();
-        $username = $faker->username;
-        factory(App\Models\Profile::class, 'withAUser', 1)
-            ->create(['username'=>$username]);
-        $this->visit(route('profile.show', ['name'=>$username]))
+        factory(App\Models\Profile::class, 'withAUser', 1)->create();
+        $user = DB::table('users')->first();
+        $this->visit(route('profile.view', ['name'=>$user->username]))
             ->see('seeInElement', '.skills', trans('profile.show.no_skills'));
     }
 
@@ -57,10 +59,24 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfileNonEmptySkillsMatrix()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $faker = Faker\Factory::create();
+        factory(App\Models\Profile::class, 'withAUser', 1)->create();
+        factory(App\Models\Tag::class, 3)->create();
+        $profile = App\Models\Profile::first();
+
+        foreach (App\Models\Tag::all() as $tag) {
+            $rating = 6;
+            $seeking = $faker->boolean;
+            $offering = $faker->boolean;
+            $profile->add_tag($tag, $rating, $seeking, $offering);
+            $tags[] = [$tag->name, $rating, $seeking, $offering];
+            $rating = $rating - 2;
+        }
+
+        $this->visit(route('profile.view', ['name'=>$profile->user->username]))
+            ->see('seeInElement', '.rating:nth-child(1)', 6)
+            ->see('seeInElement', '.rating:nth-child(2)', 4)
+            ->see('seeInElement', '.rating:nth-child(3)', 2);
     }
 
     /**
@@ -70,9 +86,24 @@ class ProfileViewTest extends PersistanceBasedTest
      */
     public function testProfileSendEmail()
     {
-        // @todo Finish this
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $faker = Faker\Factory::create();
+        factory(App\Models\Profile::class, 'withAUser', 1)->create();
+        $user = App\Models\User::first();
+        $message = $faker->sentences(3);
+        $this->visit(route('profile.view', ['name'=>$user->username]))
+            ->type($message, 'message_box')
+            ->pressSubmit();
+        $mock = \Mockery::mock($this->app['mailer']->getSwiftMailer());
+        $this->app['mailer']->setSwiftMailer($mock);
+        $mock
+            ->shouldReceive('send')
+            ->withArgs([\Mockery::on(function($message)
+            {
+                $this->assertEquals(tran('profile.message_subject'), $message->getSubject());
+                $this->assertSame([$user->profile->email => null], $message->getTo());
+                $this->assertContains(tran('profile.message_body'), $message->getBody());
+                return true;
+            }), \Mockery::any()])
+            ->once();
     }
 }

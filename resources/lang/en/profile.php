@@ -9,4 +9,6 @@ return [
 	]
     "title" => ":username's profile",
     "description" => "Description",
+    "message_subject" => 'You have recieved a message',
+    "message_body" => 'This should be the pre body of the message',
 ];
