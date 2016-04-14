@@ -6,7 +6,7 @@ return [
 	],
 	"show" => [
 		"no_skills" => ":username hasn't add any skills yet."
-	]
+	],
     "title" => ":username's profile",
     "description" => "Description",
     "message_subject" => 'You have recieved a message',
