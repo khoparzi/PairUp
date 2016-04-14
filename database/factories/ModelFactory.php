@@ -32,6 +32,7 @@ $factory->define(App\Models\Profile::class, function (Faker\Generator $faker) {
         'last_name' => $faker->lastName,
         'bio' => $faker->paragraphs(3, true),
         'url' => $faker->url,
+        'town'=> $faker->city,
         'country_id' => $country->id,
     ];
 });
@@ -41,4 +42,12 @@ $factory->defineAs(App\Models\Profile::class, 'withAUser', function (Faker\Gener
 	$profile = $factory->raw(App\Models\Profile::class);
 	$user = factory(App\Models\User::class)->create()->id;
     return array_merge($profile, ['user_id' => $user]);
+});
+
+$factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
+    $name = $faker->word;
+    return [
+        'name' => $name,
+        'slug' => $name
+    ];
 });
