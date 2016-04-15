@@ -36,7 +36,7 @@ Get dependencies:
 In a development version only, set the environment variables:
 
     cp .env.example .env
-    
+
 Then set encryption keys inside the app:
 
     php artisan key:generate
@@ -111,3 +111,17 @@ Or of course, create an Apache vhost on localhost:8000 (the default Laravel URL)
 To run the tests, just run this shortcut:
 
     ./phpunit
+
+Asset Compilation
+-----------------
+
+You'll need to run the following commands to install bower components that allow gulp to compile scss and js assets.
+
+    bower install jquery -save
+    bower install bootstrap -save
+    bower install bootstrap-sass -save
+
+Now just run gulp with the following command to complile assets that are used by views
+
+    gulp
+
