@@ -18,7 +18,7 @@ elixir(function (mix) {
         '../../../bower_components/bootstrap/dist/js/bootstrap.js',
         '../../../bower_components/bootstrap/dist/js/npm.js',
     ], 'public/assets/js');
-    mix.sass(['app.scss', '../../../bower_components/bootstrap/scss/bootstrap.scss'], 'public/assets/css');
+    mix.sass(['app.scss', '../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss'], 'public/assets/css');
 
     // Version the selected files
     mix.version(['assets/css/app.css', 'assets/js/all.js']);

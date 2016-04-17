@@ -22,7 +22,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Goto the profile browse page
         $this->visit(route('profile.browse'))
         // Check if there is a card with the name 'johndoe'
-            ->see('seeInElement', 'profile_card', 'johndoe');
+            ->see('seeInElement', '.profile_card', 'johndoe');
     }
 
     /**
@@ -31,7 +31,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
     public function testBrowserNoUsers()
     {
         $this->visit(route('profile.browse'))
-            ->see(tran('profile.browse.no_users'));
+            ->see(trans('profile.browse.no_users'));
     }
 
     /**
@@ -42,7 +42,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Add 12 profiles with users
         factory(Profile::class, 'withAUser', 12)->create();
         $this->visit(route('profile.browse'))
-            ->dontSee(tran('pagination.next'));
+            ->dontSee(trans('pagination.next'));
     }
 
     /**
@@ -52,8 +52,8 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->see(tran('pagination.next'))
-            ->seeInElement('pagination', '1, 2, 3');
+            ->see(trans('pagination.next'))
+            ->seeInElement('.pagination', '1, 2, 3');
     }
 
     /**
@@ -64,10 +64,10 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Add 12 pages of records to the DB
         factory(Profile::class, 'withAUser', 144)->create();
         $this->visit(route('profile.browse'))
-            ->see(tran('pagination.next'))
+            ->see(trans('pagination.next'))
             ->seeInElement(
-                'pagination',
-                '1, 2, 3' . tran('pagination.gap') . '10, 11, 12');
+                '.pagination',
+                '1, 2, 3' . trans('pagination.gap') . '10, 11, 12');
     }
 
     /**
@@ -106,9 +106,9 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->dontSeeInElement('pagination', tran('pagination.prev'));
+            ->dontSeeInElement('.pagination', trans('pagination.prev'));
         $this->visit(route('profile.browse', ['page'=>3]))
-            ->seeInElement('pagination', tran('pagination.prev'));
+            ->seeInElement('.pagination', trans('pagination.prev'));
     }
 
     /**
@@ -120,8 +120,8 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->seeInElement('pagination', tran('pagination.next'));
+            ->seeInElement('.pagination', trans('pagination.next'));
         $this->visit(route('profile.browse', ['page'=>3]))
-            ->dontSeeInElement('pagination', tran('pagination.next'));
+            ->dontSeeInElement('.pagination', trans('pagination.next'));
     }
 }
