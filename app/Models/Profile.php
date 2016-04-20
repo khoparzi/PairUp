@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Profile extends Model
 {
@@ -30,6 +31,14 @@ class Profile extends Model
         return $this->belongsToMany('App\Models\Tag')
             ->withPivot('rating', 'is_seeking', 'is_offering')
             ->withTimestamps();
+    }
+
+    /**
+     * Return the full name of the profile
+     */
+    public function full_name()
+    {
+        return "$this->first_name $this->last_name";
     }
 
     /**
