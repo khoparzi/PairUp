@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Profile extends Model
 {
@@ -33,9 +34,17 @@ class Profile extends Model
     }
 
     /**
+     * Return the full name of the profile
+     */
+    public function full_name()
+    {
+        return "$this->first_name $this->last_name";
+    }
+
+    /**
      * Add a skill
      */
-    public function add_tag($tag, $rating=1, $is_seeking = false, $is_offering)
+    public function add_tag($tag, $rating=1, $is_offering, $is_seeking = false)
     {
         $this->tags()->attach($tag, [
                 'rating'=> $rating,
