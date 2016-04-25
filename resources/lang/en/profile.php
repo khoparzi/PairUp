@@ -3,6 +3,7 @@
 return [
 	"browse" => [
 		"no_users" => "We don't seem to have any users at the moment",
+		"page_strap" => "Pair up with :count techies, completely free"
 	],
 	"show" => [
 		"no_skills" => ":username hasn't add any skills yet."
