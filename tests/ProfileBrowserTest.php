@@ -31,7 +31,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
     public function testBrowserNoUsers()
     {
         $this->visit(route('profile.browse'))
-            ->see(trans('profile.browse.no_users'));
+            ->seeInElement('.container', trans('profile.browse.no_users'));
     }
 
     /**
@@ -42,7 +42,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Add 12 profiles with users
         factory(Profile::class, 'withAUser', 12)->create();
         $this->visit(route('profile.browse'))
-            ->dontSee(trans('pagination.next'));
+            ->dontSeeInElement('.pagination', trans('pagination.next'));
     }
 
     /**
@@ -52,8 +52,10 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->see(trans('pagination.next'))
-            ->seeInElement('.pagination', '1, 2, 3');
+            ->seeInElement('.pagination', trans('pagination.next'))
+            ->seeInElement('.pagination', '1')
+            ->seeInElement('.pagination', '2')
+            ->seeInElement('.pagination', '3');
     }
 
     /**
@@ -64,10 +66,14 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Add 12 pages of records to the DB
         factory(Profile::class, 'withAUser', 144)->create();
         $this->visit(route('profile.browse'))
-            ->see(trans('pagination.next'))
-            ->seeInElement(
-                '.pagination',
-                '1, 2, 3' . trans('pagination.gap') . '10, 11, 12');
+            ->seeInElement('.pagination', trans('pagination.next'))
+            ->seeInElement('.pagination', '1')
+            ->seeInElement('.pagination', '2')
+            ->seeInElement('.pagination', '3')
+            ->seeInElement('.pagination', trans('pagination.gap'))
+            // ->seeInElement('.pagination', '10') // Current version only checks for two links on right side
+            ->seeInElement('.pagination', '11')
+            ->seeInElement('.pagination', '12');
     }
 
     /**
@@ -84,15 +90,15 @@ class ProfileBrowserTest extends PersistanceBasedTest
             // Check if there is a profile card with the name name_1
             ->see('seeInElement', 'profile_card', 'name_1')
             // Check if there is a link for the 3rd page
-            ->hasLink('3', route('profile.browse', ['page'=>3]))
+            ->hasLink('3', route('profile.browse', ['page'=>3]));
             // Goto page 3
-            ->click('page_3')
+        $this->click('3')
             // Check if there is a profile card with the name name_25
             ->see('seeInElement', 'profile_card', 'name_25')
             // Check if there is a link for the 5th page
-            ->hasLink('5', route('profile.browse', ['page'=>5]))
+            ->hasLink('5', route('profile.browse', ['page'=>5]));
             // Goto page 5
-            ->click('page_5')
+        $this->click('5')
             // Check if there is a profile card with the name name_49
             ->see('seeInElement', 'profile_card', 'name_49');
     }
@@ -106,9 +112,9 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         factory(Profile::class, 'withAUser', 36)->create();
         $this->visit(route('profile.browse'))
-            ->dontSeeInElement('.pagination', trans('pagination.prev'));
-        $this->visit(route('profile.browse', ['page'=>3]))
-            ->seeInElement('.pagination', trans('pagination.prev'));
+            ->dontSeeInElement('.pagination', trans('pagination.previous'));
+        $this->click(trans('pagination.next'))
+            ->hasLink(trans('pagination.previous'), route('profile.browse', ['page'=>1]));
     }
 
     /**
@@ -118,10 +124,10 @@ class ProfileBrowserTest extends PersistanceBasedTest
      */
     public function testRightArrow()
     {
-        factory(Profile::class, 'withAUser', 36)->create();
+        factory(Profile::class, 'withAUser', 24)->create();
         $this->visit(route('profile.browse'))
-            ->seeInElement('.pagination', trans('pagination.next'));
-        $this->visit(route('profile.browse', ['page'=>3]))
+            ->hasLink(trans('pagination.next'), route('profile.browse', ['page'=>2]));
+        $this->click(trans('pagination.next'))
             ->dontSeeInElement('.pagination', trans('pagination.next'));
     }
 }
