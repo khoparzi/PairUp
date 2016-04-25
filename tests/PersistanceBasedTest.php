@@ -3,7 +3,7 @@
 //use Illuminate\Testing\DatabaseTransactions;
 
 /*
- * Functional tests for the profile browser screen
+ * Extensible Test case for db based tests that sets up, migrates and seeds db before each test
  */
 abstract class PersistanceBasedTest extends TestCase
 {
