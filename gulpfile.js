@@ -13,13 +13,10 @@ var elixir = require('laravel-elixir');
 
 elixir(function (mix) {
     // Combine the selected JS files
-    mix.scripts([
-        '../../../bower_components/jquery/dist/jquery.js',
-        '../../../bower_components/bootstrap/dist/js/bootstrap.js',
-        '../../../bower_components/bootstrap/dist/js/npm.js',
-    ], 'public/assets/js');
-    mix.sass(['app.scss', '../../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss'], 'public/assets/css');
-
+    elixir(function (mix) {
+        mix.sass('app.scss')
+            .browserify('app.js');
+    });
     // Version the selected files
     mix.version(['assets/css/app.css', 'assets/js/all.js']);
 });
