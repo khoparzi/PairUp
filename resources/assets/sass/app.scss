@@ -1,2 +1,12 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+.profile_card {
+	@extend .col-sd-1;
+	@extend .col-md-4;
+	@extend .panel;
+	@extend .panel-default;
+
+	.body {
+		height: 200px;
+	}
+}

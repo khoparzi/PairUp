@@ -32,7 +32,7 @@ Route::get(
 // View profile
 Route::get(
     'profile/{username}',
-     ["as" => "profile.view", 'uses' => 'Profile\ProfileController@view']
+     ["as" => "profile.view", 'uses' => 'Profile\ProfileController@show']
 );
 
 // Edit profile (first page)
