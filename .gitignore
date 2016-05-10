@@ -16,3 +16,5 @@ Homestead.json
 .env
 /bower_components
 /public/assets
+/public/build
+.vagrant
