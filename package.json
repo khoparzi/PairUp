@@ -5,6 +5,11 @@
   },
   "dependencies": {
     "laravel-elixir": "^3.0.0",
+    "gulp": "^3.8.8",
+    "bower": "^1.5.2",
     "bootstrap-sass": "^3.0.0"
+  },
+  "scripts": {
+    "postinstall": "bower install jquery -save && bower install bootstrap -save && bower install bootstrap-sass -save && gulp --production"
   }
 }

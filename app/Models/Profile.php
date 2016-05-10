@@ -44,7 +44,7 @@ class Profile extends Model
     /**
      * Add a skill
      */
-    public function add_tag($tag, $rating=1, $is_seeking = false, $is_offering)
+    public function add_tag($tag, $rating=1, $is_offering, $is_seeking = false)
     {
         $this->tags()->attach($tag, [
                 'rating'=> $rating,
