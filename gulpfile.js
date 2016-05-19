@@ -18,5 +18,5 @@ elixir(function (mix) {
             .browserify('app.js');
     });
     // Version the selected files
-    mix.version(['assets/css/app.css', 'assets/js/all.js']);
+    mix.version(['css/app.css', 'js/app.js']);
 });

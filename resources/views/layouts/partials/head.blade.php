@@ -8,7 +8,7 @@
 
     <title>Navbar Template for Bootstrap</title>
 
-    <link rel="stylesheet" href="{{ elixir('assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 
     <style type="text/css">@yield('head_extra_styles')</style>
 </head>
