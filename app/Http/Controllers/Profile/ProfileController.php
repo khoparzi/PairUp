@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request;
 use App\Models\Profile;
 
 class ProfileController extends Controller
@@ -34,7 +35,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        // @todo Finish this
+        // @todo Finish profile create REST method
     }
 
     /**
@@ -45,18 +46,21 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        // @todo Finish this
+        // @todo Finish profile store REST method
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $username
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        // @todo Finish this
+        return view(
+            'profile.view',
+            ['user' => User::where('username', $username)->first()]
+        );
     }
 
     /**
@@ -67,7 +71,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        // @todo Finish this
+        // @todo Finish profile edit method
     }
 
     /**
@@ -79,7 +83,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // @todo Finish this
+        // @todo Finish update REST method
     }
 
     /**
@@ -90,11 +94,16 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        // @todo Finish this
+        // @todo Finish deleting profile
     }
 
     public function editFirstPage()
     {
         return view('profile.edit');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        // @todo Finish sending messages from profile page
     }
 }

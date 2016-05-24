@@ -22,7 +22,7 @@ class ProfileViewTest extends PersistanceBasedTest
         $user->profile()->save($profile);
         // Goto the profile browse page
         $this->visit(route('profile.view', ['name'=>'johndoe']))
-            ->see(trans('profile.title'));
+            ->see(trans('profile.title', ['username'=>'johndoe']));
     }
 
     /**
@@ -38,7 +38,7 @@ class ProfileViewTest extends PersistanceBasedTest
         $user->profile()->save($profile);
         // Goto the profile browse page
         $this->visit(route('profile.view', ['name'=>'johndoe']))
-            ->see('seeInElement', '.country', Models\Country::find(4)->full_name);
+            ->see('seeInElement', '.country', DB::table('countries')->where('id', 4)->first()->full_name);
     }
 
     /**
@@ -64,8 +64,8 @@ class ProfileViewTest extends PersistanceBasedTest
         factory(App\Models\Tag::class, 3)->create();
         $profile = App\Models\Profile::first();
 
+        $rating = 6;
         foreach (App\Models\Tag::all() as $tag) {
-            $rating = 6;
             $seeking = $faker->boolean;
             $offering = $faker->boolean;
             $profile->add_tag($tag, $rating, $seeking, $offering);
@@ -91,8 +91,8 @@ class ProfileViewTest extends PersistanceBasedTest
         $user = App\Models\User::first();
         $message = $faker->sentences(3);
         $this->visit(route('profile.view', ['name'=>$user->username]))
-            ->type($message, 'message_box')
-            ->pressSubmit();
+            ->type($message, 'message')
+            ->submitForm('Send');
         $mock = \Mockery::mock($this->app['mailer']->getSwiftMailer());
         $this->app['mailer']->setSwiftMailer($mock);
         $mock

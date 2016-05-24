@@ -1,12 +1,24 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .profile_card {
-	@extend .col-sd-1;
-	@extend .col-md-4;
-	@extend .panel;
-	@extend .panel-default;
+  @extend .col-sm-1;
+  @extend .col-md-4;
+  @extend .panel;
+  @extend .panel-default;
 
-	.body {
-		height: 200px;
-	}
+  .body {
+    height: 200px;
+  }
+}
+
+.field {
+  @include make-row();
+
+  .field-label {
+    @extend .col-md-2;
+    font-weight: bolder;
+  }
+  .field-value {
+    @extend .col-md-6;
+  }
 }
