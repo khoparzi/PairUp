@@ -14,9 +14,9 @@ var elixir = require('laravel-elixir');
 elixir(function (mix) {
     // Combine the selected JS files
     elixir(function (mix) {
-        mix.sass('app.scss')
-            .browserify('app.js');
+        mix.sass('app.scss', 'public/assets/css/app.css')
+            .browserify('app.js', 'public/assets/js/app.js');
     });
     // Version the selected files
-    mix.version(['css/app.css', 'js/app.js']);
+    mix.version(['public/assets/css/app.css', 'public/assets/js/app.js']);
 });

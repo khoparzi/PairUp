@@ -6,10 +6,14 @@ return [
 		"page_strap" => "Pair up with :count techies, completely free"
 	],
 	"show" => [
-		"no_skills" => ":username hasn't add any skills yet."
+        "does_not_exist" => "This user does not exist",
+		"no_skills" => ":username hasn't add any skills yet.",
+        "skill_label" => "Skill",
+        "rating_label" => "Rating",
+        "offering_label" => "Offering Help",
+        "seeking_label" => "Seeking Help",
 	],
     "title" => ":username's profile",
-    "description" => "Description",
     "message_subject" => 'You have recieved a message from :from',
     "message_body" => 'This should be the pre body of the message',
 ];

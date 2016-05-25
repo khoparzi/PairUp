@@ -47,6 +47,11 @@ Route::get(
     ["as" => "profile.edit", 'uses' => 'Profile\ProfileController@editFirstPage']
 );
 
+Route::post(
+    'profile/send-message',
+    ['as'=>'profile.send-message', 'uses'=>'Profile\ProfileController@sendMessage']
+);
+
 // Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
