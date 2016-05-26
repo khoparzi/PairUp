@@ -1,13 +1,14 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 .profile_card {
-  @extend .col-sm-1;
-  @extend .col-md-4;
+  @include make-xs-column(12);
+  @include make-sm-column(6);
+  @include make-md-column(4);
   @extend .panel;
   @extend .panel-default;
 
   .body {
-    height: 200px;
+    padding: 15px 0;
   }
 }
 
@@ -15,10 +16,23 @@
   @include make-row();
 
   .field-label {
-    @extend .col-md-2;
+    @include make-md-column(2);
     font-weight: bolder;
   }
   .field-value {
-    @extend .col-md-6;
+    @include make-md-column(6);
+  }
+}
+
+.skill-row {
+  @include make-row();
+
+  .skill-name {
+    @include make-xs-column(12);
+    @include make-sm-column(6);
+  }
+  .skill-stars {
+    @include make-xs-column(12);
+    @include make-sm-column(6);
   }
 }

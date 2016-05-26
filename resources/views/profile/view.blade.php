@@ -36,7 +36,14 @@
         @foreach($user->profile->tags as $tag)
             <tr>
                 <td class="skill-name">{{$tag->name}}</td>
-                <td class="rating">{{$tag->pivot->rating}}</td>
+                <td class="rating">
+                    @for($i = 0; $i < $tag->pivot->rating; $i++)
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    @endfor
+                    @for($i = 0; $i < (5 - $tag->pivot->rating); $i++)
+                        <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                    @endfor
+                </td>
                 <td><input type="checkbox" {{$tag->pivot->is_offering ? 'checked':''}}></td>
                 <td><input type="checkbox" {{$tag->pivot->is_seeking ? 'checked':''}}></td>
             </tr>

@@ -10,10 +10,23 @@
     @foreach ($profiles as $profile)
 	<div class="profile_card">
 		<div class="panel-heading">
-            <a href="{{route('profile.view', ['username'=>$profile->user->username])}}">{{$profile->full_name()}}</a>
+            <img src="http://placekitten.com/50/50" >
+            <a href="{{route('profile.view', ['username'=>$profile->user->username])}}">{{$profile->user->username}}</a>
         </div>
         <div class="body">
-            <img src="http://placekitten.com/160/160" >
+            @foreach($profile->tags as $tag)
+                <div class="skill-row">
+                    <div class="skill-name">{{$tag->name}}</div>
+                    <div class="skill-stars">
+                        @for($i = 0; $i < $tag->pivot->rating; $i++)
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        @endfor
+                        @for($i = 0; $i < (5 - $tag->pivot->rating); $i++)
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+                        @endfor
+                    </div>
+                </div>
+            @endforeach
         </div>
 	</div>
     @endforeach
