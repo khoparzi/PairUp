@@ -16,6 +16,7 @@ elixir(function (mix) {
     elixir(function (mix) {
         mix.sass('app.scss', 'public/assets/css/app.css')
             .browserify('app.js', 'public/assets/js/app.js');
+        // TODO: Make the fonts and images compile in the resepective folders
     });
     // Version the selected files
     mix.version(['public/assets/css/app.css', 'public/assets/js/app.js']);

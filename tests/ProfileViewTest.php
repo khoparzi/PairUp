@@ -64,13 +64,13 @@ class ProfileViewTest extends PersistanceBasedTest
         factory(App\Models\Tag::class, 3)->create();
         $profile = App\Models\Profile::first();
 
-        $rating = 6;
+        $rating = 5;
         foreach (App\Models\Tag::all() as $tag) {
             $seeking = $faker->boolean;
             $offering = $faker->boolean;
             $profile->add_tag($tag, $rating, $seeking, $offering);
             $tags[] = [$tag->name, $rating, $seeking, $offering];
-            $rating = $rating - 2;
+            $rating = $rating - 1;
         }
 
         $this->visit(route('profile.view', ['name'=>$profile->user->username]))
