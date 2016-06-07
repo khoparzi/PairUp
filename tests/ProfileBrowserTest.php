@@ -20,7 +20,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
         // Save the user
         $user->profile()->save($profile);
         // Goto the profile browse page
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
         // Check if there is a card with the name 'johndoe'
             ->see('seeInElement', '.profile_card', 'johndoe');
     }
@@ -30,7 +30,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
      */
     public function testBrowserNoUsers()
     {
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
             ->seeInElement('.container', trans('profile.browse.no_users'));
     }
 
@@ -41,7 +41,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         // Add 12 profiles with users
         factory(Profile::class, 'withAUser', 12)->create();
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
             ->dontSeeInElement('.pagination', trans('pagination.next'));
     }
 
@@ -51,7 +51,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
     public function testBrowserContiguousPagination()
     {
         factory(Profile::class, 'withAUser', 36)->create();
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
             ->seeInElement('.pagination', trans('pagination.next'))
             ->seeInElement('.pagination', '1')
             ->seeInElement('.pagination', '2')
@@ -65,7 +65,7 @@ class ProfileBrowserTest extends PersistanceBasedTest
     {
         // Add 12 pages of records to the DB
         factory(Profile::class, 'withAUser', 144)->create();
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
             ->seeInElement('.pagination', trans('pagination.next'))
             ->seeInElement('.pagination', '1')
             ->seeInElement('.pagination', '2')
@@ -86,17 +86,17 @@ class ProfileBrowserTest extends PersistanceBasedTest
             $profile = factory(Profile::class)->make(['country_id'=>4]);
             $user->profile()->save($profile);
         }
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
             // Check if there is a profile card with the name name_1
             ->see('seeInElement', 'profile_card', 'name_1')
             // Check if there is a link for the 3rd page
-            ->hasLink('3', route('profile.browse', ['page'=>3]));
+            ->hasLink('3', route('profiles.index', ['page'=>3]));
             // Goto page 3
         $this->click('3')
             // Check if there is a profile card with the name name_25
             ->see('seeInElement', 'profile_card', 'name_25')
             // Check if there is a link for the 5th page
-            ->hasLink('5', route('profile.browse', ['page'=>5]));
+            ->hasLink('5', route('profiles.index', ['page'=>5]));
             // Goto page 5
         $this->click('5')
             // Check if there is a profile card with the name name_49
@@ -111,10 +111,10 @@ class ProfileBrowserTest extends PersistanceBasedTest
     public function testLeftArrow()
     {
         factory(Profile::class, 'withAUser', 36)->create();
-        $this->visit(route('profile.browse'))
+        $this->visit(route('profiles.index'))
             ->dontSeeInElement('.pagination', trans('pagination.previous'));
         $this->click(trans('pagination.next'))
-            ->hasLink(trans('pagination.previous'), route('profile.browse', ['page'=>1]));
+            ->hasLink(trans('pagination.previous'), route('profiles.index', ['page'=>1]));
     }
 
     /**
@@ -125,8 +125,8 @@ class ProfileBrowserTest extends PersistanceBasedTest
     public function testRightArrow()
     {
         factory(Profile::class, 'withAUser', 24)->create();
-        $this->visit(route('profile.browse'))
-            ->hasLink(trans('pagination.next'), route('profile.browse', ['page'=>2]));
+        $this->visit(route('profiles.index'))
+            ->hasLink(trans('pagination.next'), route('profiles.index', ['page'=>2]));
         $this->click(trans('pagination.next'))
             ->dontSeeInElement('.pagination', trans('pagination.next'));
     }

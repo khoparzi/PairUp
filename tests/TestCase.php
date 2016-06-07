@@ -50,7 +50,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     protected function visitWizardPage($page = 1)
     {
-        return $this->visit(route('profile.edit'), ['page' => $page, ]);
+        return $this->visit(route('profiles.edit'), ['page' => $page, ]);
     }
 
     protected function visitFirstWizardPage()

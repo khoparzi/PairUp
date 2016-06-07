@@ -11,41 +11,11 @@
 |
 */
 
+Route::resource('profiles', 'Profile\ProfileController');
+
 Route::get('/', ["as" => "public.welcome" , function () {
     return view('welcome');
 }]);
-
-// @todo For the two pages, make {page} optional and use a regex match
-
-// List profiles (first page)
-Route::get(
-    'profiles',
-    ["as" => "profiles.browse", 'uses' => 'Profile\ProfileController@index']
-);
-
-// List profiles by page number
-Route::get(
-    'profiles/{page}',
-    ["as" => "profile.browse", 'uses' => 'Profile\ProfileController@index']
-);
-
-// View profile
-Route::get(
-    'profile/{username}',
-     ["as" => "profile.view", 'uses' => 'Profile\ProfileController@show']
-);
-
-// Edit profile (first page)
-Route::get(
-    'edit/profile',
-    ["as" => "profile.edit", 'uses' => 'Profile\ProfileController@editFirstPage']
-);
-
-// Edit profile by page number
-Route::get(
-    'edit/profile/{page}',
-    ["as" => "profile.edit", 'uses' => 'Profile\ProfileController@editFirstPage']
-);
 
 Route::post(
     'profile/send-message',

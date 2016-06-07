@@ -11,7 +11,7 @@
 	<div class="profile_card">
 		<div class="panel-heading">
             <img src="http://placekitten.com/50/50" >
-            <a href="{{route('profile.view', ['username'=>$profile->user->username])}}">{{$profile->user->username}}</a>
+            <a href="{{route('profiles.show', ['username'=>$profile->user->username])}}">{{$profile->user->username}}</a>
         </div>
         <div class="body">
             @foreach($profile->tags as $tag)

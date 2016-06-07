@@ -38,7 +38,7 @@ class WizardPageThreeTest extends TestCase
 
         // Check that the save was successful
         $this
-            ->visit(route('profile.view'))
+            ->visit(route('profiles.show'))
             ->see(trans('profile.title', ['username' => 'testuser']))
             ->see(trans('public.profile.description'))
             ->see($desc);

@@ -21,7 +21,7 @@ class ProfileViewTest extends PersistanceBasedTest
         // Save the user
         $user->profile()->save($profile);
         // Goto the profile browse page
-        $this->visit(route('profile.view', ['name'=>'johndoe']))
+        $this->visit(route('profiles.show', ['name'=>'johndoe']))
             ->see(trans('profile.title', ['username'=>'johndoe']));
     }
 
@@ -37,7 +37,7 @@ class ProfileViewTest extends PersistanceBasedTest
         // Save the user
         $user->profile()->save($profile);
         // Goto the profile browse page
-        $this->visit(route('profile.view', ['name'=>'johndoe']))
+        $this->visit(route('profiles.show', ['name'=>'johndoe']))
             ->see('seeInElement', '.country', DB::table('countries')->where('id', 4)->first()->full_name);
     }
 
@@ -48,7 +48,7 @@ class ProfileViewTest extends PersistanceBasedTest
     {
         factory(App\Models\Profile::class, 'withAUser', 1)->create();
         $user = DB::table('users')->first();
-        $this->visit(route('profile.view', ['name'=>$user->username]))
+        $this->visit(route('profiles.show', ['name'=>$user->username]))
             ->see('seeInElement', '.skills', trans('profile.show.no_skills'));
     }
 
@@ -73,7 +73,7 @@ class ProfileViewTest extends PersistanceBasedTest
             $rating = $rating - 1;
         }
 
-        $this->visit(route('profile.view', ['name'=>$profile->user->username]))
+        $this->visit(route('profiles.show', ['name'=>$profile->user->username]))
             ->see('seeInElement', '.rating:nth-child(1)', 6)
             ->see('seeInElement', '.rating:nth-child(2)', 4)
             ->see('seeInElement', '.rating:nth-child(3)', 2);
@@ -90,7 +90,7 @@ class ProfileViewTest extends PersistanceBasedTest
         factory(App\Models\Profile::class, 'withAUser', 1)->create();
         $user = App\Models\User::first();
         $message = $faker->sentences(3);
-        $this->visit(route('profile.view', ['name'=>$user->username]))
+        $this->visit(route('profiles.show', ['name'=>$user->username]))
             ->type($message, 'message')
             ->submitForm('Send');
         $mock = \Mockery::mock($this->app['mailer']->getSwiftMailer());
